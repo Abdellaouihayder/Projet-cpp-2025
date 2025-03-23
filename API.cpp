@@ -56,7 +56,6 @@ Employe::~Employe() {
     }
     taches.clear();  
 }
-
 int Employe::getIdEmploye() { return idEmploye; }
 void Employe::setIdEmploye(int id) { idEmploye = id; }
 string Employe::getNom() { return nom; }
@@ -65,4 +64,73 @@ string Employe::getPoste() { return poste; }
 void Employe::setPoste(string p) { poste = p; }
 float Employe::getSalaire() { return salaire; }
 void Employe::setSalaire(float s) { salaire = s; }
+
+
+
+//Receptionniste implementation
+Receptionniste::Receptionniste(int id, string n, string p, float s, string sh) : Employe(id, n, p, s), shift(sh) {}
+Receptionniste::Receptionniste(const Receptionniste& r) : Employe(r), shift(r.shift) {}
+Receptionniste::~Receptionniste() {}
+string Receptionniste::getShift() {return shift;}
+void Receptionniste::setShift(string s) {shift = s;}
+void Receptionniste::enregistrerClient(client c) {
+cout << "Client " << c.getNom() << " " << c.getPrenom() << " enregistré." << endl;}
+void Receptionniste::attribuerChambre(client c, int chambre) {
+cout << "Chambre " << chambre << " attribuée au client " << c.getNom() << " " << c.getPrenom() << endl;}
+void Receptionniste::afficherReceptionniste() {
+cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Shift: " << shift << endl;}
+
+
+//AssistantSocial implementation
+AssistantSocial::AssistantSocial(int id, string nom, string poste, float salaire, string* domaineExpertise)
+    : Employe(id, nom, poste, salaire) {
+    this->domaineExpertise = new string(*domaineExpertise);  
+}
+AssistantSocial::AssistantSocial(const AssistantSocial& assistant)
+    : Employe(assistant) {
+    domaineExpertise = new string(*assistant.domaineExpertise);  
+}
+AssistantSocial::~AssistantSocial() {
+    if (domaineExpertise != NULL) {delete domaineExpertise;  }
+}
+string AssistantSocial::getDomaineExpertise() {
+    if (domaineExpertise != NULL) {
+        return *domaineExpertise;
+    } else {return "No expertise assigned";}
+}
+void AssistantSocial::setDomaineExpertise(string d) {
+    if (domaineExpertise != NULL) {
+        *domaineExpertise = d;
+    } else {domaineExpertise = new string(d);}
+}
+void AssistantSocial::aiderClient(client c) {
+    cout << "L'assistant social " << getNom() << " aide le client " << c.getNom() << " " << c.getPrenom() << endl;
+}
+void AssistantSocial::afficherAssistantSocial() {
+    cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Domaine d'expertise: " 
+         << getDomaineExpertise() << endl;
+}
+
+
+
+//Specialisation implementation
+Specialisation::Specialisation(string nom, string desc)
+    : nomSpecialisation(nom), description(desc) {}
+Specialisation::Specialisation(const Specialisation& spec)
+    : nomSpecialisation(spec.nomSpecialisation), description(spec.description) {}
+Specialisation::~Specialisation() {}
+string Specialisation::getNomSpecialisation() {
+    return nomSpecialisation;
+}
+void Specialisation::setNomSpecialisation(string n) {
+    nomSpecialisation = n;
+}
+string Specialisation::getDescription() {
+    return description;
+}
+void Specialisation::setDescription(string d) {
+    description = d;
+}
+
+
 
