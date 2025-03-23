@@ -119,18 +119,55 @@ Specialisation::Specialisation(string nom, string desc)
 Specialisation::Specialisation(const Specialisation& spec)
     : nomSpecialisation(spec.nomSpecialisation), description(spec.description) {}
 Specialisation::~Specialisation() {}
-string Specialisation::getNomSpecialisation() {
-    return nomSpecialisation;
-}
-void Specialisation::setNomSpecialisation(string n) {
-    nomSpecialisation = n;
-}
-string Specialisation::getDescription() {
-    return description;
-}
-void Specialisation::setDescription(string d) {
-    description = d;
-}
+string Specialisation::getNomSpecialisation() {return nomSpecialisation;}
+void Specialisation::setNomSpecialisation(string n) {nomSpecialisation = n;}
+string Specialisation::getDescription() {return description;}
+void Specialisation::setDescription(string d) {description = d;}
 
 
+
+
+//AssistantSpecialiste implementation
+AssistantSpecialiste::AssistantSpecialiste(int id, string *nom, string poste, float salaire, string *certif, string nomSpec, string descSpec,string *domaineExpertise)
+: AssistantSocial(id, *nom, poste, salaire, domaineExpertise), 
+      Specialisation(nomSpec, descSpec) {
+        certification = new string(*certif);
+}
+
+AssistantSpecialiste::AssistantSpecialiste(const AssistantSpecialiste& aspec)
+    : AssistantSocial(aspec), Specialisation(aspec) {
+    if (aspec.certification != NULL) {
+        certification = new string(*aspec.certification);
+    } else {
+        certification = NULL;
+    }
+}
+AssistantSpecialiste::~AssistantSpecialiste() {
+    if (certification != NULL) {
+        delete certification;  
+    }
+}
+string AssistantSpecialiste::getCertification() {
+    return (certification != NULL) ? *certification : "No certification available";
+}
+void AssistantSpecialiste::setCertification(string c) {
+    if (certification == NULL) {
+        certification = new string(c);
+    } else {
+        *certification = c;
+    }
+}
+void AssistantSpecialiste::organiserAtelier(string sujet) {
+    cout << "Organizing workshop on: " << sujet << endl;
+}
+void AssistantSpecialiste::afficherAssistantSpecialiste() {
+    cout << "Assistant Specialiste Details:" << endl;
+    cout << "Nom: " << getNom() << endl;
+    cout << "Poste: " << getPoste() << endl;
+    cout << "Salaire: " << getSalaire() << endl;
+    cout << "Certification: " << getCertification() << endl;
+    cout << "Specialisation: " << getNomSpecialisation() << endl;
+    cout << "Description: " << getDescription() << endl;
+    cout << "Domaine Expertise: " << getDomaineExpertise() << endl;
+}
 
