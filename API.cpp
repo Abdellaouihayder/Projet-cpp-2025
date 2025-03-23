@@ -77,7 +77,7 @@ void Receptionniste::enregistrerClient(client c) {
 cout << "Client " << c.getNom() << " " << c.getPrenom() << " enregistré." << endl;}
 void Receptionniste::attribuerChambre(client c, int chambre) {
 cout << "Chambre " << chambre << " attribuée au client " << c.getNom() << " " << c.getPrenom() << endl;}
-void Receptionniste::afficherReceptionniste() {
+void Receptionniste::afficherEmploye(){
 cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Shift: " << shift << endl;}
 
 
@@ -106,10 +106,11 @@ void AssistantSocial::setDomaineExpertise(string d) {
 void AssistantSocial::aiderClient(client c) {
     cout << "L'assistant social " << getNom() << " aide le client " << c.getNom() << " " << c.getPrenom() << endl;
 }
-void AssistantSocial::afficherAssistantSocial() {
+void AssistantSocial::afficherEmploye() {
     cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Domaine d'expertise: " 
          << getDomaineExpertise() << endl;
 }
+
 
 
 
@@ -160,7 +161,7 @@ void AssistantSpecialiste::setCertification(string c) {
 void AssistantSpecialiste::organiserAtelier(string sujet) {
     cout << "Organizing workshop on: " << sujet << endl;
 }
-void AssistantSpecialiste::afficherAssistantSpecialiste() {
+void AssistantSpecialiste::afficherEmploye() {
     cout << "Assistant Specialiste Details:" << endl;
     cout << "Nom: " << getNom() << endl;
     cout << "Poste: " << getPoste() << endl;
@@ -170,4 +171,57 @@ void AssistantSpecialiste::afficherAssistantSpecialiste() {
     cout << "Description: " << getDescription() << endl;
     cout << "Domaine Expertise: " << getDomaineExpertise() << endl;
 }
+
+
+
+
+//GestionEquipe implementation
+GestionEquipe::GestionEquipe(string nom, int nb) : nomEquipe(nom), nombreMembres(nb) {}
+GestionEquipe::GestionEquipe(const GestionEquipe& equipe) {
+    nomEquipe = equipe.nomEquipe;
+    nombreMembres = equipe.nombreMembres;
+    for (unsigned int i = 0; i < equipe.membres.size(); i++) {
+        if (dynamic_cast<AssistantSpecialiste*>(equipe.membres[i])) {
+            AssistantSpecialiste* newEmploye = new AssistantSpecialiste(*dynamic_cast<AssistantSpecialiste*>(equipe.membres[i]));
+            membres.push_back(newEmploye);
+        }
+        else if (dynamic_cast<Receptionniste*>(equipe.membres[i])) {
+            Receptionniste* newEmploye = new Receptionniste(*dynamic_cast<Receptionniste*>(equipe.membres[i]));
+            membres.push_back(newEmploye);
+        }
+    }
+}
+
+GestionEquipe::~GestionEquipe() {
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        delete membres[i];  
+    }
+    membres.clear();  
+}
+string GestionEquipe::getNomEquipe() {return nomEquipe;}
+void GestionEquipe::setNomEquipe(string n) {nomEquipe = n;}
+int GestionEquipe::getNombreMembres() {return nombreMembres;}
+void GestionEquipe::setNombreMembres(int n) {nombreMembres = n;}
+void GestionEquipe::ajouterEmploye(Employe* employe) {
+    membres.push_back(employe);
+    nombreMembres = membres.size();
+}
+void GestionEquipe::supprimerEmploye(int idEmploye) {
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        if (membres[i]->getIdEmploye() == idEmploye) {
+            delete membres[i];  
+            membres.erase(membres.begin() + i);  
+            nombreMembres = membres.size();
+            break;
+        }
+    }
+}
+void GestionEquipe::afficherEquipe() {
+    cout << "Team Name: " << nomEquipe << endl;
+    cout << "Number of Members: " << nombreMembres << endl;
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        cout << "Employee ID: " << membres[i]->getIdEmploye() << ", Name: " << membres[i]->getNom() << endl;
+    }
+}
+
 

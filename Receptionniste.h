@@ -12,5 +12,5 @@ public:
     void setShift(string s);
     void enregistrerClient(client client);
     void attribuerChambre(client client, int chambre);
-    void afficherReceptionniste();
+    virtual void afficherEmploye();
 };

@@ -19,7 +19,7 @@ public:
     string getCertification();
     void setCertification(string c);
     void organiserAtelier(string sujet);
-    void afficherAssistantSpecialiste();
+    virtual void afficherEmploye();
 };
 
 #endif 

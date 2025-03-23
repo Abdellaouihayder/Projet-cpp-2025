@@ -17,7 +17,7 @@ public:
     string getDomaineExpertise();
     void setDomaineExpertise(string d);
     void aiderClient(client c);
-    void afficherAssistantSocial();
+    virtual void afficherEmploye();
 };
 
 #endif
