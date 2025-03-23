@@ -1,11 +1,10 @@
-#ifndef TACHE_H  
-#define TACHE_H
-#include <iostream>
+#ifndef EMPLOYE_H
+#define EMPLOYE_H
 #include <string>
 #include <vector>
 #include "Tache.h"
-class Tache;
 using namespace std;
+
 class Employe {
 protected:
     int idEmploye;
@@ -14,10 +13,11 @@ protected:
     float salaire;
     vector<Tache*> taches;
 
+
 public:
     Employe(int id = 0, string nom = "", string poste = "", float salaire = 0.0);
-    Employe(const Employe& employe);
-    virtual ~Employe();  
+    Employe(const Employe& e);
+    virtual ~Employe();
     
     int getIdEmploye();
     void setIdEmploye(int id);
@@ -27,6 +27,9 @@ public:
     void setPoste(string p);
     float getSalaire();
     void setSalaire(float s);
-    virtual void afficherEmploye() = 0;
+
+    virtual void afficherEmploye() = 0;  
 };
+
 #endif
+

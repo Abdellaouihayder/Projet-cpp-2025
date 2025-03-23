@@ -1,5 +1,6 @@
 #ifndef TACHE_H
 #define TACHE_H
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -17,4 +18,5 @@ public:
     void setStatut(string stat);
     void marquerCommeTerminee();
 };
+
 #endif

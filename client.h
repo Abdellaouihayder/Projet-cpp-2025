@@ -1,3 +1,6 @@
+#ifndef CLIENT_H
+#define CLIENT_H
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -11,10 +14,13 @@ public:
     client(const client&);
     ~client();
     void afficherinfo();
-    string getNom(); 
-    void setNom(string n); 
+    string getNom();
+    void setNom(string n);
     string getPrenom();
     void setPrenom(string p);
     int getCin();
     void setCin(int c);
 };
+
+#endif 
+

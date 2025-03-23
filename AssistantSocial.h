@@ -4,20 +4,21 @@
 #include <iostream>
 #include <string>
 #include "Employe.h"  
+#include "client.h"   
 
-class AssistantSocial : public Employe {
+class AssistantSocial : public Employe {  
 protected:
     string *domaineExpertise;
 public:
+    
     AssistantSocial(int id = 0, string nom = "", string poste = "", float salaire = 0.0, string *domaineExpertise = NULL);
     AssistantSocial(const AssistantSocial& assistant);
     ~AssistantSocial();
-    
     string getDomaineExpertise();
     void setDomaineExpertise(string d);
-    void aiderClient(client);
+    void aiderClient(client c);
     void afficherAssistantSocial();
 };
 
-#endif // ASSISTANTSOCIAL_H
+#endif
 
