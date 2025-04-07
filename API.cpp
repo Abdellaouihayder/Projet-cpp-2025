@@ -204,10 +204,20 @@ string GestionEquipe::getNomEquipe() {return nomEquipe;}
 void GestionEquipe::setNomEquipe(string n) {nomEquipe = n;}
 int GestionEquipe::getNombreMembres() {return nombreMembres;}
 void GestionEquipe::setNombreMembres(int n) {nombreMembres = n;}
+
 void GestionEquipe::ajouterEmploye(Employe* employe) {
-    membres.push_back(employe);
-    nombreMembres = membres.size();
+    Employe* nonConstEmploye = const_cast<Employe*>(employe);
+
+    if (typeid(*nonConstEmploye) == typeid(AssistantSpecialiste)) {
+        nonConstEmploye = new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*employe));
+    }
+    else if (typeid(*nonConstEmploye) == typeid(Receptionniste)) {
+        nonConstEmploye = new Receptionniste(static_cast<const Receptionniste&>(*employe));
+    }
+        membres.push_back(nonConstEmploye);
+        nombreMembres = membres.size();
 }
+
 void GestionEquipe::supprimerEmploye(int idEmploye) {
     for (unsigned int i = 0; i < membres.size(); i++) {
         if (membres[i]->getIdEmploye() == idEmploye) {
