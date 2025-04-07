@@ -228,14 +228,6 @@ void GestionEquipe::supprimerEmploye(int idEmploye) {
         }
     }
 }
-void GestionEquipe::afficherEquipe() {
-    cout << "Team Name: " << nomEquipe << endl;
-    cout << "Number of Members: " << nombreMembres << endl;
-    for (unsigned int i = 0; i < membres.size(); i++) {
-        cout << "Employee ID: " << membres[i]->getIdEmploye() << ", Name: " << membres[i]->getNom() << endl;
-    }
-}
-
 Employe* GestionEquipe::rechercherEmploye(int idEmploye) {
     for (unsigned int i = 0; i < membres.size(); ++i) {
         if (membres[i]->getIdEmploye() == idEmploye) {
@@ -244,6 +236,17 @@ Employe* GestionEquipe::rechercherEmploye(int idEmploye) {
     }
     return NULL;  
 }
-
-
+void GestionEquipe::afficherEquipe() {
+    cout << "Team Name: " << nomEquipe << endl;
+    cout << "Number of Members: " << nombreMembres << endl;
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        cout << "Employee ID: " << membres[i]->getIdEmploye() << ", Name: " << membres[i]->getNom() << endl;
+        if (AssistantSpecialiste* assistant = dynamic_cast<AssistantSpecialiste*>(membres[i])) {
+            cout << "Certification: " << assistant->getCertification() << endl;  
+        }
+        else if (Receptionniste* receptionniste = dynamic_cast<Receptionniste*>(membres[i])) {
+            cout << "Shift: " << receptionniste->getShift() << endl; 
+        }
+    }
+}
 
