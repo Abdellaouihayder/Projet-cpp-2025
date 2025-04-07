@@ -1,3 +1,4 @@
+#include <typeinfo>
 #include "Tache.h"  
 #include "AssistantSocial.h"
 #include "client.h"
@@ -180,14 +181,15 @@ GestionEquipe::GestionEquipe(string nom, int nb) : nomEquipe(nom), nombreMembres
 GestionEquipe::GestionEquipe(const GestionEquipe& equipe) {
     nomEquipe = equipe.nomEquipe;
     nombreMembres = equipe.nombreMembres;
+    Employe *p;
     for (unsigned int i = 0; i < equipe.membres.size(); i++) {
-        if (dynamic_cast<AssistantSpecialiste*>(equipe.membres[i])) {
-            AssistantSpecialiste* newEmploye = new AssistantSpecialiste(*dynamic_cast<AssistantSpecialiste*>(equipe.membres[i]));
-            membres.push_back(newEmploye);
+        if (typeid(*equipe.membres[i]) == typeid(AssistantSpecialiste)) {
+        	p=new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*equipe.membres[i]));
+            membres.push_back(p);
         }
-        else if (dynamic_cast<Receptionniste*>(equipe.membres[i])) {
-            Receptionniste* newEmploye = new Receptionniste(*dynamic_cast<Receptionniste*>(equipe.membres[i]));
-            membres.push_back(newEmploye);
+        else if (typeid(*equipe.membres[i]) == typeid(Receptionniste)) {
+        	p=new Receptionniste(static_cast<const Receptionniste&>(*equipe.membres[i]));
+            membres.push_back(p);
         }
     }
 }
