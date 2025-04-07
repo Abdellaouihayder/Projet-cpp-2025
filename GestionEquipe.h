@@ -18,4 +18,5 @@ public:
     void ajouterEmploye(Employe* employe);
     void supprimerEmploye(int idEmploye);
     void afficherEquipe();
+    Employe* rechercherEmploye(int idEmploye);
 };

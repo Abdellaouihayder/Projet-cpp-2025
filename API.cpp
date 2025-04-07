@@ -236,4 +236,14 @@ void GestionEquipe::afficherEquipe() {
     }
 }
 
+Employe* GestionEquipe::rechercherEmploye(int idEmploye) {
+    for (unsigned int i = 0; i < membres.size(); ++i) {
+        if (membres[i]->getIdEmploye() == idEmploye) {
+            return membres[i];  
+        }
+    }
+    return NULL;  
+}
+
+
 
