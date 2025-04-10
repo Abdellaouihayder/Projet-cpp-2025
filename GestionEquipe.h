@@ -10,7 +10,7 @@ public:
     GestionEquipe(string nom = "", int nb = 1);
     GestionEquipe(const GestionEquipe& equipe);
     ~GestionEquipe();
-
+	GestionEquipe& operator=(const GestionEquipe& equipe);
     string getNomEquipe();
     void setNomEquipe(string n);
     int getNombreMembres();

@@ -27,7 +27,7 @@ public:
     void setPoste(string p);
     float getSalaire();
     void setSalaire(float s);
-
+	Employe& operator=(const Employe& e);
     virtual void afficherEmploye() = 0;  
 };
 

@@ -66,6 +66,26 @@ void Employe::setPoste(string p) { poste = p; }
 float Employe::getSalaire() { return salaire; }
 void Employe::setSalaire(float s) { salaire = s; }
 
+Employe& Employe::operator=(const Employe& e) {
+    if (this != &e) {  
+    
+    idEmploye = e.idEmploye;
+    nom = e.nom;
+    poste = e.poste;
+    salaire = e.salaire;
+    for (unsigned int i = 0; i < e.taches.size(); i++) {
+        delete taches[i];
+    }
+    taches.clear();
+    Tache* T ;
+    for (unsigned int i = 0; i < e.taches.size(); i++) {
+    	T= new Tache(*e.taches[i]); 
+        taches.push_back(T);
+    }
+	}
+    return *this;  
+}
+
 
 
 //Receptionniste implementation
@@ -127,10 +147,8 @@ AssistantSocial AssistantSocial::operator+(AssistantSocial& other) {
 
 
 //Specialisation implementation
-Specialisation::Specialisation(string nom, string desc)
-    : nomSpecialisation(nom), description(desc) {}
-Specialisation::Specialisation(const Specialisation& spec)
-    : nomSpecialisation(spec.nomSpecialisation), description(spec.description) {}
+Specialisation::Specialisation(string nom, string desc): nomSpecialisation(nom), description(desc) {}
+Specialisation::Specialisation(const Specialisation& spec): nomSpecialisation(spec.nomSpecialisation), description(spec.description) {}
 Specialisation::~Specialisation() {}
 string Specialisation::getNomSpecialisation() {return nomSpecialisation;}
 void Specialisation::setNomSpecialisation(string n) {nomSpecialisation = n;}
@@ -147,8 +165,7 @@ AssistantSpecialiste::AssistantSpecialiste(int id, string *nom, string poste, fl
         certification = new string(*certif);
 }
 
-AssistantSpecialiste::AssistantSpecialiste(const AssistantSpecialiste& aspec)
-    : AssistantSocial(aspec), Specialisation(aspec) {
+AssistantSpecialiste::AssistantSpecialiste(const AssistantSpecialiste& aspec): AssistantSocial(aspec), Specialisation(aspec) {
     if (aspec.certification != NULL) {
         certification = new string(*aspec.certification);
     } else {
@@ -277,4 +294,29 @@ void GestionEquipe::afficherEquipe() {
         }
     }
 }
+
+GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
+    if (this != &equipe) {  
+    
+    nomEquipe = equipe.nomEquipe;
+    nombreMembres = equipe.nombreMembres;
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        delete membres[i];  
+    }
+    membres.clear();  
+    Employe *p;
+    for (unsigned int i = 0; i < equipe.membres.size(); i++) {
+        if (typeid(*equipe.membres[i]) == typeid(AssistantSpecialiste)) {
+        	p=new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*equipe.membres[i]));
+            membres.push_back(p);
+        }
+        else if (typeid(*equipe.membres[i]) == typeid(Receptionniste)) {
+        	p=new Receptionniste(static_cast<const Receptionniste&>(*equipe.membres[i]));
+            membres.push_back(p);
+        }
+    }
+	}
+    return *this;  
+}
+
 
