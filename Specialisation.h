@@ -1,8 +1,9 @@
 #ifndef SPECIALISATION_H
 #define SPECIALISATION_H
-
 #include <iostream>
-#include <string>
+#include <string>  
+
+using namespace std;
 
 class Specialisation {
 protected:

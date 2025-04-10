@@ -14,6 +14,8 @@ public:
                          string *certif = NULL, string nomSpec = "", string descSpec = "", 
                          string *domaineExpertise = NULL);
     AssistantSpecialiste(const AssistantSpecialiste& aspec);
+    AssistantSpecialiste operator-(AssistantSpecialiste& other);
+
     ~AssistantSpecialiste();
 
     string getCertification();

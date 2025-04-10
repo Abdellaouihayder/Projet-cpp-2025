@@ -111,6 +111,17 @@ void AssistantSocial::afficherEmploye() {
     cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Domaine d'expertise: " 
          << getDomaineExpertise() << endl;
 }
+AssistantSocial AssistantSocial::operator+(AssistantSocial& other) {
+    string fusionDomaine = this->getDomaineExpertise() + " & " + other.getDomaineExpertise();
+    return AssistantSocial(
+        this->idEmploye, 
+        this->nom, 
+        this->poste, 
+        this->salaire + other.salaire, 
+        new string(fusionDomaine)
+    );
+}
+
 
 
 
@@ -172,6 +183,23 @@ void AssistantSpecialiste::afficherEmploye() {
     cout << "Description: " << getDescription() << endl;
     cout << "Domaine Expertise: " << getDomaineExpertise() << endl;
 }
+
+AssistantSpecialiste AssistantSpecialiste::operator-(AssistantSpecialiste& other) {
+    // Réduire uniquement le salaire
+    float newSalaire = this->salaire - other.salaire;
+
+    return AssistantSpecialiste(
+        this->idEmploye,  
+        &this->nom, 
+        this->poste,
+        newSalaire,  
+        this->certification,  
+        this->getNomSpecialisation(),
+        this->getDescription(),
+        this->domaineExpertise
+    );
+}
+
 
 
 

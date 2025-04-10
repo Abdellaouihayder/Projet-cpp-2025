@@ -13,11 +13,14 @@ public:
     
     AssistantSocial(int id = 0, string nom = "", string poste = "", float salaire = 0.0, string *domaineExpertise = NULL);
     AssistantSocial(const AssistantSocial& assistant);
+    AssistantSocial operator+(AssistantSocial& other) ;
+
     ~AssistantSocial();
     string getDomaineExpertise();
     void setDomaineExpertise(string d);
     void aiderClient(client c);
     virtual void afficherEmploye();
+
 };
 
 #endif
