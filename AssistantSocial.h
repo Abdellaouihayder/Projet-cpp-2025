@@ -11,7 +11,7 @@ protected:
     string *domaineExpertise;
 public:
     
-    AssistantSocial(int id = 0, string nom = "", string poste = "", float salaire = 0.0, string *domaineExpertise = NULL);
+    AssistantSocial(int id = 0, string nom = "", string poste = "", float salaire = 0.0,int nbr=0, string *domaineExpertise = NULL);
     AssistantSocial(const AssistantSocial& assistant);
     AssistantSocial operator+(AssistantSocial& other) ;
 

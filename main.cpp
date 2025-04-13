@@ -2,9 +2,11 @@
 #include <string>
 #include <vector>
 #include "AssistantSpecialiste.h"
+#include "Receptionniste.h"
+
 using namespace std;
 main() {
-	 string domaineExpertise1 = "Psychologie";
+/*	 string domaineExpertise1 = "Psychologie";
     string domaineExpertise2 = "Sociologie";
     string certif1 = "Certificat A";
     string certif2 = "Certificat B";
@@ -25,5 +27,9 @@ main() {
     // Affichage des informations après soustraction
     std::cout << "Après soustraction : " << std::endl;
     as3.afficherEmploye();
-
+*/
+Receptionniste r;
+    cin >> r;
+    cout << "\nInformations du réceptionniste :\n";
+    cout << r;
 }

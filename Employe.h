@@ -11,11 +11,12 @@ protected:
     string nom;
     string poste;
     float salaire;
+    int nbrTache;
     vector<Tache*> taches;
 
 
 public:
-    Employe(int id = 0, string nom = "", string poste = "", float salaire = 0.0);
+    Employe(int id = 0, string nom = "", string poste = "", float salaire = 0.0 ,int nbrTache=0);
     Employe(const Employe& e);
     virtual ~Employe();
     
@@ -27,6 +28,8 @@ public:
     void setPoste(string p);
     float getSalaire();
     void setSalaire(float s);
+    int getnbrTache();
+    void setnbrTache(int nbr);
 	Employe& operator=(const Employe& e);
     virtual void afficherEmploye() = 0;  
 };

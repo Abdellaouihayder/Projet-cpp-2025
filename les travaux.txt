@@ -1,3 +1,4 @@
 operateur = class (GestionEquipe/Employe)
 operateur + class (AssistantSocial)
 operateur - class (AssistantSpecialiste)
+surcharge de << et >> (Receptionniste)
