@@ -10,6 +10,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <cstdlib>
+
 using namespace std;
 
 // client implementation 
@@ -88,6 +91,89 @@ Employe& Employe::operator=(const Employe& e) {
     }
 	}
     return *this;  
+}
+// Sauvegarde les tâches dans un fichier
+void Employe::enregistrerTachesDansFichier(const string& nomFichier)  {
+    ofstream fichier(nomFichier.c_str());  
+    if (!fichier.is_open()) { exit(-1); }
+
+    for (unsigned int i = 0; i < taches.size(); i++) {
+        fichier << taches[i]->getId() << ";" 
+                << taches[i]->getDescription() << ";" 
+                << taches[i]->getStatut() << endl;
+    }
+
+    fichier.close();
+}
+// Charge les tâches depuis un fichier
+void Employe::chargerTachesDepuisFichier(const string& nomFichier) {
+    ifstream fichier(nomFichier.c_str());
+    if (!fichier.is_open()) { exit(-2); }
+
+    string ligne;
+    while (getline(fichier, ligne)) {
+        int pos1 = ligne.find(';');
+        int pos2 = ligne.find(';', pos1 + 1);
+		int id = atoi(ligne.substr(0, pos1).c_str());
+        string desc = ligne.substr(pos1 + 1, pos2 - pos1 - 1);
+        string statut = ligne.substr(pos2 + 1);
+        Tache* t = new Tache(desc, statut);
+        t->setId(id);
+        taches.push_back(t);
+    }
+
+    fichier.close();
+}
+bool Employe::supprimerTacheParId(int id) {
+    for (unsigned int i=0;i<taches.size();i++) {
+        if (taches[i]->getId() == id) {        
+            delete taches[i];                      
+            taches.erase(taches.begin() + i);         
+            nbrTache--;  
+			// Réécriture du fichier mis à jour
+            enregistrerTachesDansFichier("taches.txt");              
+            return true;               
+        }
+    }
+    return false; 
+}
+
+void Employe::ajouterTache(Tache* t) {
+    taches.push_back(t);
+    nbrTache++;
+    ofstream fichier("taches.txt", ios::app);
+    if (fichier.is_open()) {
+        fichier << t->getId() << ";"
+                << t->getDescription() << ";"
+                << t->getStatut() << endl;
+        fichier.close();
+    } else {
+        cerr << "Erreur lors de l'ouverture du fichier pour ajout." << endl;
+    }
+}
+
+bool Employe::rechercherTacheParId(int id) {
+    for (unsigned int i = 0; i < taches.size(); i++) {
+        if (taches[i]->getId() == id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Employe::modifierTache(int id, const string& nouvelleDescription, const string& nouveauStatut) {
+    if (!rechercherTacheParId(id)) {
+        return false;
+    }
+    for (unsigned int i = 0; i < taches.size(); i++) {
+        if (taches[i]->getId() == id) {
+            taches[i]->setDescription(nouvelleDescription);
+            taches[i]->setStatut(nouveauStatut);
+            enregistrerTachesDansFichier("taches.txt");
+            return true;
+        }
+    }
+    return false;
 }
 
 
@@ -349,6 +435,25 @@ void GestionEquipe::afficherEquipe() {
     }
 }
 
+bool GestionEquipe::modifierEmploye(int idEmploye, const string& nom, const string& poste, float salaire, int nbrTache) {
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        if (membres[i]->getIdEmploye() == idEmploye) {
+            membres[i]->setNom(nom);
+            membres[i]->setPoste(poste);
+            membres[i]->setSalaire(salaire);
+            membres[i]->setnbrTache(nbrTache);
+
+            enregistrerEmployesDansFichier("employes.txt");
+
+            return true; 
+        }
+    }
+
+    return false; 
+}
+
+
+
 GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
     if (this != &equipe) {  
     
@@ -372,5 +477,21 @@ GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
 	}
     return *this;  
 }
+void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
+    ofstream fichier(nomFichier.c_str());  // Utilisation de c_str() si nécessaire
+    if (!fichier.is_open()) {
+        cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employés !" << endl;
+        return;
+    }
 
+    for (unsigned int i = 0; i < membres.size(); i++) {
+        fichier << membres[i]->getIdEmploye() << ";" 
+                << membres[i]->getNom() << ";" 
+                << membres[i]->getPoste() << ";" 
+                << membres[i]->getSalaire() << ";" 
+                << membres[i]->getnbrTache() << endl;  
+    }
+
+    fichier.close();  
+}
 

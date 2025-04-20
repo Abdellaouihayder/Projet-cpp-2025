@@ -15,8 +15,13 @@ public:
     void setNomEquipe(string n);
     int getNombreMembres();
     void setNombreMembres(int n);
+    //crud
     void ajouterEmploye(Employe* employe);
     void supprimerEmploye(int idEmploye);
     void afficherEquipe();
     Employe* rechercherEmploye(int idEmploye);
+    bool modifierEmploye(int idEmploye, const string& nom, const string& poste, float salaire, int nbrTache);
+     // Sauvegarde et chargement des employés dans/depuis un fichier
+    void enregistrerEmployesDansFichier(const string& nomFichier);
+    void chargerEmployesDepuisFichier(const string& nomFichier);
 };

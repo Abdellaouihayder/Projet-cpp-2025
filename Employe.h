@@ -32,6 +32,17 @@ public:
     void setnbrTache(int nbr);
 	Employe& operator=(const Employe& e);
     virtual void afficherEmploye() = 0;  
+    void enregistrerTachesDansFichier(const string& nomFichier);
+	void chargerTachesDepuisFichier(const string& nomFichier);
+	//crud
+	bool supprimerTacheParId(int id);
+	void ajouterTache(Tache* t);
+	bool rechercherTacheParId(int id);
+	bool modifierTache(int id, const string& nouvelleDescription, const string& nouveauStatut);
+
+
+
+
 };
 
 #endif
