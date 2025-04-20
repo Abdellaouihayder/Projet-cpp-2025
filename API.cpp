@@ -38,6 +38,8 @@ void Tache::setDescription(string desc) { description = desc; }
 string Tache::getStatut() { return statut; }
 void Tache::setStatut(string stat) { statut = stat; }
 void Tache::marquerCommeTerminee() { statut = "Terminee"; }
+int Tache::getId(){ return id;}
+void Tache::setId(int i){id=i;}
 
 
 // Employe implementation
