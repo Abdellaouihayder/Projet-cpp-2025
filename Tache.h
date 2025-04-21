@@ -9,7 +9,7 @@ class Tache {
     string description;
     string statut;
 public:
-    Tache(string = "", string = "");
+    Tache(int=0,string = "", string = "");
     Tache(const Tache&);
     ~Tache();
 
@@ -20,6 +20,7 @@ public:
     int getId();
     void setId(int id);
     void marquerCommeTerminee();
+
 };
 
 #endif

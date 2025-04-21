@@ -6,6 +6,8 @@ class Receptionniste : public Employe {
 public:
     Receptionniste(int id = 0, string nom = "", string poste = "", float salaire = 0.0,int nbr=0, string shift = "");
     Receptionniste(const Receptionniste& R);
+   
+
     ~Receptionniste();
 
     string getShift();

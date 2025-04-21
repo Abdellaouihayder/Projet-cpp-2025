@@ -13,7 +13,7 @@ public:
    AssistantSpecialiste(int id = 0, string *nom = NULL, string poste = "", float salaire = 0.0, int nbr = 0,
                      string *certif = NULL, string nomSpec = "", string descSpec = "", 
                      string *domaineExpertise = NULL);
-
+	AssistantSpecialiste(int id, string nom, string poste, float salaire, int nbrTache);
     AssistantSpecialiste(const AssistantSpecialiste& aspec);
     AssistantSpecialiste operator-(AssistantSpecialiste& other);
 

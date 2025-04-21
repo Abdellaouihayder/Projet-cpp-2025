@@ -30,7 +30,7 @@ int client::getCin() { return cin; }
 void client::setCin(int c) { cin = c; }
 
 // Tache implementation
-Tache::Tache(string desc, string stat) : description(desc), statut(stat) {}
+Tache::Tache(int i,string desc, string stat) :id(i),description(desc), statut(stat) {}
 Tache::Tache(const Tache& T){
 	description = T.description;  
     statut = T.statut;
@@ -117,7 +117,7 @@ void Employe::chargerTachesDepuisFichier(const string& nomFichier) {
 		int id = atoi(ligne.substr(0, pos1).c_str());
         string desc = ligne.substr(pos1 + 1, pos2 - pos1 - 1);
         string statut = ligne.substr(pos2 + 1);
-        Tache* t = new Tache(desc, statut);
+        Tache* t = new Tache(id,desc, statut);
         t->setId(id);
         taches.push_back(t);
     }
@@ -302,6 +302,11 @@ AssistantSpecialiste::AssistantSpecialiste(int id, string *nom, string poste, fl
     certification = new string(*certif);
 }
 
+AssistantSpecialiste::AssistantSpecialiste(int id, string nom, string poste, float salaire, int nbrTache)
+    : AssistantSocial(id, nom, poste, salaire, nbrTache), Specialisation() {
+    // initialisation spécifique si nécessaire
+}
+
 
 AssistantSpecialiste::AssistantSpecialiste(const AssistantSpecialiste& aspec): AssistantSocial(aspec), Specialisation(aspec) {
     if (aspec.certification != NULL) {
@@ -477,8 +482,9 @@ GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
 	}
     return *this;  
 }
+// enregistrerEmployesDansFichier
 void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
-    ofstream fichier(nomFichier.c_str());  // Utilisation de c_str() si nécessaire
+    ofstream fichier(nomFichier.c_str());  
     if (!fichier.is_open()) {
         cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employés !" << endl;
         return;
@@ -494,4 +500,39 @@ void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
 
     fichier.close();  
 }
+void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
+    ifstream fichier(nomFichier.c_str());
+    if (!fichier.is_open()) { exit(-2); }
+
+    string ligne;
+    while (getline(fichier, ligne)) {
+        int pos1 = ligne.find(';');
+        int pos2 = ligne.find(';', pos1 + 1);
+        int pos3 = ligne.find(';', pos2 + 1);
+        int pos4 = ligne.find(';', pos3 + 1);
+
+        int id = atoi(ligne.substr(0, pos1).c_str());
+        string nom = ligne.substr(pos1 + 1, pos2 - pos1 - 1);
+        string poste = ligne.substr(pos2 + 1, pos3 - pos2 - 1);
+        float salaire = atof(ligne.substr(pos3 + 1, pos4 - pos3 - 1).c_str());
+        int nbrTache = atoi(ligne.substr(pos4 + 1).c_str());
+
+        Employe* e = NULL;
+
+        if (poste == "Receptionniste") {
+            e = new Receptionniste(id, nom, poste, salaire, nbrTache);
+        } else if (poste == "AssistantSocial") {
+            e = new AssistantSocial(id, nom, poste, salaire, nbrTache);
+        } else if (poste == "AssistantSpecialiste") {
+            e = new AssistantSpecialiste(id, nom, poste, salaire, nbrTache);
+        }
+
+        if (e != NULL) {
+            membres.push_back(e);
+        }
+    }
+
+    fichier.close();
+}
+
 

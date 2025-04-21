@@ -31,7 +31,8 @@ public:
     int getnbrTache();
     void setnbrTache(int nbr);
 	Employe& operator=(const Employe& e);
-    virtual void afficherEmploye() = 0;  
+    virtual void afficherEmploye() = 0; 
+	//fichier 
     void enregistrerTachesDansFichier(const string& nomFichier);
 	void chargerTachesDepuisFichier(const string& nomFichier);
 	//crud

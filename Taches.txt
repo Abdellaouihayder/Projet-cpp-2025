@@ -1,0 +1,2 @@
+1;Répondre au téléphone;En cours
+2;Accueillir un client;Terminé
