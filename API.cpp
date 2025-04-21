@@ -12,6 +12,7 @@
 #include <vector>
 #include <fstream>
 #include <cstdlib>
+#include <stdexcept>
 
 using namespace std;
 
@@ -46,7 +47,17 @@ void Tache::setId(int i){id=i;}
 
 
 // Employe implementation
-Employe::Employe(int id, string n, string p, float s,int nbr) : idEmploye(id), nom(n), poste(p), salaire(s),nbrTache(nbr){}
+Employe::Employe(int id, string n, string p, float s,int nbr) : idEmploye(id), nom(n), poste(p), salaire(s),nbrTache(nbr){
+try {
+        if (nbrTache < 0) {
+            throw invalid_argument("Le nombre de tâches ne peut pas être négatif.");
+        }
+        this->nbrTache = nbrTache;
+    } catch (const invalid_argument& e) {
+        cerr << "Erreur lors de la création de l'employé : " << e.what() << endl;
+        this->nbrTache = 0;  // Valeur par défaut ou traitement spécifique
+    }
+}
 Employe::Employe(const Employe& e)
     : idEmploye(e.idEmploye), nom(e.nom), poste(e.poste), salaire(e.salaire),nbrTache(e.nbrTache){
     Tache* T ;

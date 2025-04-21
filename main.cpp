@@ -10,6 +10,7 @@
 #include "specialisation.h"
 #include "gestionEquipe.h"
 #include "Tache.h"
+#include <stdexcept>
 
 using namespace std;
 main() {
@@ -118,5 +119,18 @@ Receptionniste r;
     delete r2;
     */
     
+    cout<<"test exception"<<endl
+     /*try {
+        // Tentative de création avec un nombre de tâches négatif
+        Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, -2, "Matin");
+        
+        // Si aucune exception n'est lancée, afficher l'objet
+        r->afficherEmploye();
+        delete r;
+    }
+    catch (const invalid_argument& e) {
+        cout << "Exception attrapée : " << e.what() << endl;
+    }*/
+
     
 }

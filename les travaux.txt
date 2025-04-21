@@ -2,4 +2,5 @@ operateur = class (GestionEquipe/Employe)
 operateur + class (AssistantSocial)
 operateur - class (AssistantSpecialiste)
 surcharge de << et >> (Receptionniste)
-fichier dans class employer 
+fichier dans class employer et gestion d'equipe
+exception dans Employer dans le constructeur dans nbrTaches
