@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include "AssistantSpecialiste.h"
-//#include "Receptionniste.h"
-//#include "client.h"
-//#include "tache.h"
-//#include "employe.h"
-//#include "assistantsocial.h"
-//#include "specialisation.h"
-//#include "gestionEquipe.h"
-//#include "Tache.h"
+#include "AssistantSpecialiste.h"
+#include "Receptionniste.h"
+#include "client.h"
+#include "tache.h"
+#include "employe.h"
+#include "assistantsocial.h"
+#include "specialisation.h"
+#include "gestionEquipe.h"
+#include "Tache.h"
 #include <stdexcept>
-//#include "GestionNationalite.h"
+#include "GestionNationalite.h"
 #include <set>
 #include <map>
-#include "API.cpp"
+//#include "API.cpp"
 
 using namespace std;
 int main()
@@ -42,13 +42,13 @@ int main()
         as3.afficherEmploye();
     */
 
-    
+    /*
     Receptionniste r;
         cin >> r;
         cout << "\nInformations du rï¿½ceptionniste :\n";
         cout << r;
 
-    cout << "test fichier" << endl;
+    cout << "test fichier" << endl;*/
     /*
     GestionEquipe gestionEquipe;  // Crï¿½ation de l'objet de gestion d'ï¿½quipe
 
@@ -115,7 +115,7 @@ int main()
     */
 
     cout << "test exception" << endl;
-    
+    /*
     try {
        // Tentative de crï¿½ation avec un nombre de tï¿½ches nï¿½gatif
        Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, -2, "Matin");
@@ -128,47 +128,46 @@ int main()
        cout << "Exception attrapï¿½e : " << e.what() << endl;
    }
 
-    GestionDesNationalites gestion;
+ */
+	
+	    GestionDesNationalites gestion;
 
-    // Add nationalities for some clients
-    gestion.ajouterNationalite(1, "Franï¿½aise");
-    gestion.ajouterNationalite(1, "Algï¿½rienne");
-    gestion.ajouterNationalite(2, "Marocaine");
-
-    // Create a vector for client 3 and add multiple nationalities
-    vector<string> nationalitesClient3;
-    nationalitesClient3.push_back("Tunisie");
-    nationalitesClient3.push_back("Egyptienne");
-    nationalitesClient3.push_back("Franï¿½aise");
-    gestion.ajouterNationalites(3, nationalitesClient3);
-
-    // Display nationalities for a specific client
-    cout << "Affichage des nationalitï¿½s pour le client 1 :\n";
-    gestion.afficherNationalites(1); // Client 1 has French and Algerian nationality
-    cout << "Affichage des nationalitï¿½s pour le client 2 :\n";
-    gestion.afficherNationalites(2); // Client 2 has Moroccan nationality
-    cout << "Affichage des nationalitï¿½s pour le client 3 :\n";
-    gestion.afficherNationalites(3); // Client 3 has Tunisian, Egyptian, and French nationality
-
-    // Modify nationalities for a client
-    cout << "Modification des nationalitï¿½s du client 2 :\n";
-    gestion.modifierNationalites(2, {"Espagnole", "Portugaise"});
-    gestion.afficherNationalites(2); // Client 2 now has Spanish and Portuguese nationalities
-
-    // Add more nationalities to a client
-    cout << "Ajout d'une nouvelle nationalitï¿½ au client 1 :\n";
+    // Ajouter des nationalités (simples) pour le client 1
+    gestion.ajouterNationalite(1, "Française");
     gestion.ajouterNationalite(1, "Italienne");
-    gestion.afficherNationalites(1); // Client 1 now has French, Algerian, and Italian nationalities
+    gestion.ajouterNationalite(1, "Française"); // Doublon ignoré grâce au set
 
-    // Remove a nationality from a client
-    cout << "Suppression d'une nationalitï¿½ du client 1 :\n";
-    gestion.supprimerNationalite(1, "Franï¿½aise");
-    gestion.afficherNationalites(1); // Client 1 now only has Algerian and Italian nationalities
+    // Afficher les nationalités du client 1
+    gestion.afficherNationalites(1);
 
-    // Display all clients' nationalities
-    cout << "Affichage de toutes les nationalitï¿½s des clients :\n";
+    // Ajouter plusieurs nationalités à un autre client (client 2)
+    set<string> natClient2;
+    natClient2.insert("Espagnole");
+    natClient2.insert("Allemande");
+    natClient2.insert("Japonaise");
+
+    // Convertir le set en vector pour passer à la méthode (car elle prend vector)
+    vector<string> vecNatClient2(natClient2.begin(), natClient2.end());
+    gestion.ajouterNationalites(2, vecNatClient2);
+
+    // Affichage global
+    cout << "\n--- Tous les clients ---" << endl;
     gestion.afficherTous();
 
-    system("pause");
+    // Modifier les nationalités du client 1
+    set<string> nouvellesNat;
+    nouvellesNat.insert("Tunisienne");
+    nouvellesNat.insert("Algérienne");
+
+    vector<string> vecNouvellesNat(nouvellesNat.begin(), nouvellesNat.end());
+    gestion.modifierNationalites(1, vecNouvellesNat);
+
+    // Supprimer une nationalité
+    gestion.supprimerNationalite(2, "Allemande");
+
+    // Affichage final
+    cout << "\n--- Après modifications ---" << endl;
+    gestion.afficherTous();
+	system("pause");
     return 0;
 }

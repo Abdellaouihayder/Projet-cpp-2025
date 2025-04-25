@@ -4,3 +4,4 @@ operateur - class (AssistantSpecialiste)
 surcharge de << et >> (Receptionniste)
 fichier dans class employer et gestion d'equipe
 exception dans Employer dans le constructeur dans nbrTaches
+stl (map and set)dans class gestion des nationalites

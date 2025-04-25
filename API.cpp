@@ -551,51 +551,41 @@ void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
 }
 
 //gestion des nationalites implementation
-
 void GestionDesNationalites::ajouterNationalite(const int &idClient, const string &nationalite)
 {
-    vector<string> &vec = ClientNationalite[idClient];
-    if (find(vec.begin(), vec.end(), nationalite) == vec.end())
-    {
-        vec.push_back(nationalite);
-    }
+    ClientNationalite[idClient].insert(nationalite);
 }
 
 void GestionDesNationalites::ajouterNationalites(const int &idClient, const vector<string> &nationalites)
 {
-    vector<string> &vec = ClientNationalite[idClient];
-    for (unsigned int i = 0; i < nationalites.size(); ++i)
-    {
-        if (find(vec.begin(), vec.end(), nationalites[i]) == vec.end())
-        {
-            vec.push_back(nationalites[i]);
-        }
-    }
+    set<string> &s = ClientNationalite[idClient];
+    for (vector<string>::const_iterator it = nationalites.begin(); it != nationalites.end(); ++it)
+{
+    s.insert(*it);
+}
 }
 
 void GestionDesNationalites::supprimerNationalite(const int &idClient, const string &nationalite)
 {
-    typename map<int, vector<string> >::iterator it = ClientNationalite.find(idClient);
+    map<int, set<string> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
-        vector<string> &vec = it->second;
-        typename vector<string>::iterator vit = find(vec.begin(), vec.end(), nationalite);
-        if (vit != vec.end())
-        {
-            vec.erase(vit);
-        }
-        if (vec.empty())
+        set<string> &s = it->second;
+        s.erase(nationalite);
+        if (s.empty())
         {
             ClientNationalite.erase(it);
         }
     }
 }
 
+
 void GestionDesNationalites::modifierNationalites(const int &idClient, const vector<string> &nouvellesNationalites)
 {
     if (!nouvellesNationalites.empty())
     {
-        ClientNationalite[idClient] = nouvellesNationalites;
+        set<string> nouvellesSet(nouvellesNationalites.begin(), nouvellesNationalites.end());
+        ClientNationalite[idClient] = nouvellesSet;
     }
     else
     {
@@ -605,37 +595,39 @@ void GestionDesNationalites::modifierNationalites(const int &idClient, const vec
 
 void GestionDesNationalites::afficherNationalites(const int &idClient)
 {
-    typename map<int, vector<string> >::iterator it = ClientNationalite.find(idClient);
+    map<int, set<string> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
-        cout << "Client " << idClient << " a les nationalitï¿½s : ";
-        typename vector<string>::iterator vit;
-        for (vit = it->second.begin(); vit != it->second.end(); ++vit)
+        cout << "Client " << idClient << " a les nationalités : ";
+        set<string>::const_iterator nat;
+        for (nat = it->second.begin(); nat != it->second.end(); ++nat)
         {
-            cout << *vit << " ";
+            cout << *nat << " ";
         }
         cout << endl;
     }
     else
     {
-        cout << "Aucune nationalitï¿½ trouvï¿½ pour le client " << idClient << endl;
+        cout << "Aucune nationalité trouvée pour le client " << idClient << endl;
     }
 }
 
+
 void GestionDesNationalites::afficherTous()
 {
-    typename map<int, vector<string> >::iterator it;
+    map<int, set<string> >::iterator it;
     for (it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
     {
         cout << "Client " << it->first << " : ";
-        typename vector<string>::iterator vit;
-        for (vit = it->second.begin(); vit != it->second.end(); ++vit)
+        set<string>::const_iterator nat;
+        for (nat = it->second.begin(); nat != it->second.end(); ++nat)
         {
-            cout << *vit << " ";
+            cout << *nat << " ";
         }
         cout << endl;
     }
 }
+
 
 
 
