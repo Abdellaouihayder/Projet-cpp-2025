@@ -3,19 +3,21 @@
 
 #include <iostream>
 #include <string>
-#include "Specialisation.h"  
-#include "AssistantSocial.h"  
+#include "Specialisation.h"
+#include "AssistantSocial.h"
 
-class AssistantSpecialiste : public Specialisation, public AssistantSocial {
+class AssistantSpecialiste : public Specialisation, public AssistantSocial
+{
 protected:
     string *certification;
+
 public:
-   AssistantSpecialiste(int id = 0, string *nom = NULL, string poste = "", float salaire = 0.0, int nbr = 0,
-                     string *certif = NULL, string nomSpec = "", string descSpec = "", 
-                     string *domaineExpertise = NULL);
-	AssistantSpecialiste(int id, string nom, string poste, float salaire, int nbrTache);
-    AssistantSpecialiste(const AssistantSpecialiste& aspec);
-    AssistantSpecialiste operator-(AssistantSpecialiste& other);
+    AssistantSpecialiste(int id = 0, string *nom = NULL, string poste = "", float salaire = 0.0, int nbr = 0,
+                         string *certif = NULL, string nomSpec = "", string descSpec = "",
+                         string *domaineExpertise = NULL);
+    AssistantSpecialiste(int id, string nom, string poste, float salaire, int nbrTache);
+    AssistantSpecialiste(const AssistantSpecialiste &aspec);
+    AssistantSpecialiste operator-(AssistantSpecialiste &other);
 
     ~AssistantSpecialiste();
 
@@ -25,5 +27,4 @@ public:
     virtual void afficherEmploye();
 };
 
-#endif 
-
+#endif

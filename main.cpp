@@ -1,136 +1,174 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "AssistantSpecialiste.h"
-#include "Receptionniste.h"
-#include "client.h"
-#include "tache.h"
-#include "employe.h"
-#include "assistantsocial.h"
-#include "specialisation.h"
-#include "gestionEquipe.h"
-#include "Tache.h"
+//#include "AssistantSpecialiste.h"
+//#include "Receptionniste.h"
+//#include "client.h"
+//#include "tache.h"
+//#include "employe.h"
+//#include "assistantsocial.h"
+//#include "specialisation.h"
+//#include "gestionEquipe.h"
+//#include "Tache.h"
 #include <stdexcept>
+//#include "GestionNationalite.h"
+#include <set>
+#include <map>
+#include "API.cpp"
 
 using namespace std;
-main() {
-/*	 string domaineExpertise1 = "Psychologie";
-    string domaineExpertise2 = "Sociologie";
-    string certif1 = "Certificat A";
-    string certif2 = "Certificat B";
-    
-    AssistantSpecialiste as1(1, new string("Alice"), "Assistante Sociale", 2500.0f, new string(certif1), "Spécialisation A", "Description A", new string(domaineExpertise1));
-    AssistantSpecialiste as2(2, new string("Bob"), "Assistante Sociale", 2200.0f, new string(certif2), "Spécialisation B", "Description B", new string(domaineExpertise2));
+int main()
+{
+    /*	 string domaineExpertise1 = "Psychologie";
+        string domaineExpertise2 = "Sociologie";
+        string certif1 = "Certificat A";
+        string certif2 = "Certificat B";
 
-    // Affichage des informations avant soustraction
-    std::cout << "Avant soustraction : " << std::endl;
-    as1.afficherEmploye();
-    std::cout << std::endl;
-    as2.afficherEmploye();
-    std::cout << std::endl;
+        AssistantSpecialiste as1(1, new string("Alice"), "Assistante Sociale", 2500.0f, new string(certif1), "Spï¿½cialisation A", "Description A", new string(domaineExpertise1));
+        AssistantSpecialiste as2(2, new string("Bob"), "Assistante Sociale", 2200.0f, new string(certif2), "Spï¿½cialisation B", "Description B", new string(domaineExpertise2));
 
-    // Utilisation de l'opérateur -
-    AssistantSpecialiste as3 = as1 - as2;
+        // Affichage des informations avant soustraction
+        std::cout << "Avant soustraction : " << std::endl;
+        as1.afficherEmploye();
+        std::cout << std::endl;
+        as2.afficherEmploye();
+        std::cout << std::endl;
 
-    // Affichage des informations après soustraction
-    std::cout << "Après soustraction : " << std::endl;
-    as3.afficherEmploye();
-*/
+        // Utilisation de l'opï¿½rateur -
+        AssistantSpecialiste as3 = as1 - as2;
 
-/*
-Receptionniste r;
-    cin >> r;
-    cout << "\nInformations du réceptionniste :\n";
-    cout << r;*/
+        // Affichage des informations aprï¿½s soustraction
+        std::cout << "Aprï¿½s soustraction : " << std::endl;
+        as3.afficherEmploye();
+    */
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    cout<<"test fichier"<<endl;
+    Receptionniste r;
+        cin >> r;
+        cout << "\nInformations du rï¿½ceptionniste :\n";
+        cout << r;
+
+    cout << "test fichier" << endl;
     /*
-    GestionEquipe gestionEquipe;  // Création de l'objet de gestion d'équipe
+    GestionEquipe gestionEquipe;  // Crï¿½ation de l'objet de gestion d'ï¿½quipe
 
-    // Test 1: Ajouter des employés
-    cout << "Ajout de nouveaux employés:\n";
+    // Test 1: Ajouter des employï¿½s
+    cout << "Ajout de nouveaux employï¿½s:\n";
 
-    // Ajout d'un réceptionniste
+    // Ajout d'un rï¿½ceptionniste
     gestionEquipe.ajouterEmploye(new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, 5, "Matin"));
 
     // Ajout d'un assistant social
     string domaineExpertise = "Psychologie";
     gestionEquipe.ajouterEmploye(new AssistantSocial(2, "Doe Jane", "AssistantSocial", 2800.0, 3, &domaineExpertise));
 
-    // Ajout d'un assistant spécialiste
-    string certification = "Diplôme en Psychologie";
-    Specialisation spec("Sociologie", "Etudes de la société");
+    // Ajout d'un assistant spï¿½cialiste
+    string certification = "Diplï¿½me en Psychologie";
+    Specialisation spec("Sociologie", "Etudes de la sociï¿½tï¿½");
     gestionEquipe.ajouterEmploye(new AssistantSpecialiste(3, new string("Charlie"), "AssistantSpecialiste", 3000.0, 4, &certification, spec.getNomSpecialisation(), spec.getDescription(), &domaineExpertise));
 
-    // Test 2: Afficher tous les employés
-    cout << "\nListe des employés:\n";
+    // Test 2: Afficher tous les employï¿½s
+    cout << "\nListe des employï¿½s:\n";
     gestionEquipe.afficherEquipe();
 
-    // Afficher les employés après suppression
-    cout << "\nListe des employés après suppression:\n";
+    // Afficher les employï¿½s aprï¿½s suppression
+    cout << "\nListe des employï¿½s aprï¿½s suppression:\n";
     gestionEquipe.afficherEquipe();
 
     // Test 5: Sauvegarder dans un fichier
-    cout << "\nSauvegarde de l'équipe dans un fichier...\n";
+    cout << "\nSauvegarde de l'ï¿½quipe dans un fichier...\n";
     gestionEquipe.enregistrerEmployesDansFichier("Employer.txt");
 
     // Test 6: Charger depuis un fichier
-    cout << "\nChargement des employés depuis le fichier...\n";
+    cout << "\nChargement des employï¿½s depuis le fichier...\n";
     gestionEquipe.chargerEmployesDepuisFichier("Employer.txt");
 
-    // Afficher les employés après chargement depuis fichier
-    cout << "\nListe des employés après chargement depuis fichier:\n";
+    // Afficher les employï¿½s aprï¿½s chargement depuis fichier
+    cout << "\nListe des employï¿½s aprï¿½s chargement depuis fichier:\n";
     gestionEquipe.afficherEquipe();
-    
-    
-    
+
+
+
    Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, 5, "Matin");
 
-    // Créer des tâches
-    Tache* tache1 = new Tache(1, "Répondre au téléphone", "En cours");
-    Tache* tache2 = new Tache(2, "Accueillir un client", "Terminé");
-    
-    // Ajouter des tâches à l'employé
+    // Crï¿½er des tï¿½ches
+    Tache* tache1 = new Tache(1, "Rï¿½pondre au tï¿½lï¿½phone", "En cours");
+    Tache* tache2 = new Tache(2, "Accueillir un client", "Terminï¿½");
+
+    // Ajouter des tï¿½ches ï¿½ l'employï¿½
     r->ajouterTache(tache1);
     r->ajouterTache(tache2);
 
 
-    // Sauvegarder les tâches dans un fichier
+    // Sauvegarder les tï¿½ches dans un fichier
     r->enregistrerTachesDansFichier("Taches.txt");
 
-    // Charger les tâches depuis le fichier
+    // Charger les tï¿½ches depuis le fichier
     Receptionniste* r2 = new Receptionniste(0, "", "", 0.0, 0, "");
     r2->chargerTachesDepuisFichier("Taches.txt");
 
-   
 
-    // Libérer la mémoire
+
+    // Libï¿½rer la mï¿½moire
     delete r;
     delete r2;
     */
-    
-    cout<<"test exception"<<endl
-     /*try {
-        // Tentative de création avec un nombre de tâches négatif
-        Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, -2, "Matin");
-        
-        // Si aucune exception n'est lancée, afficher l'objet
-        r->afficherEmploye();
-        delete r;
-    }
-    catch (const invalid_argument& e) {
-        cout << "Exception attrapée : " << e.what() << endl;
-    }*/
 
+    cout << "test exception" << endl;
     
+    try {
+       // Tentative de crï¿½ation avec un nombre de tï¿½ches nï¿½gatif
+       Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, -2, "Matin");
+
+       // Si aucune exception n'est lancï¿½e, afficher l'objet
+       r->afficherEmploye();
+       delete r;
+   }
+   catch (const invalid_argument& e) {
+       cout << "Exception attrapï¿½e : " << e.what() << endl;
+   }
+
+    GestionDesNationalites gestion;
+
+    // Add nationalities for some clients
+    gestion.ajouterNationalite(1, "Franï¿½aise");
+    gestion.ajouterNationalite(1, "Algï¿½rienne");
+    gestion.ajouterNationalite(2, "Marocaine");
+
+    // Create a vector for client 3 and add multiple nationalities
+    vector<string> nationalitesClient3;
+    nationalitesClient3.push_back("Tunisie");
+    nationalitesClient3.push_back("Egyptienne");
+    nationalitesClient3.push_back("Franï¿½aise");
+    gestion.ajouterNationalites(3, nationalitesClient3);
+
+    // Display nationalities for a specific client
+    cout << "Affichage des nationalitï¿½s pour le client 1 :\n";
+    gestion.afficherNationalites(1); // Client 1 has French and Algerian nationality
+    cout << "Affichage des nationalitï¿½s pour le client 2 :\n";
+    gestion.afficherNationalites(2); // Client 2 has Moroccan nationality
+    cout << "Affichage des nationalitï¿½s pour le client 3 :\n";
+    gestion.afficherNationalites(3); // Client 3 has Tunisian, Egyptian, and French nationality
+
+    // Modify nationalities for a client
+    cout << "Modification des nationalitï¿½s du client 2 :\n";
+    gestion.modifierNationalites(2, {"Espagnole", "Portugaise"});
+    gestion.afficherNationalites(2); // Client 2 now has Spanish and Portuguese nationalities
+
+    // Add more nationalities to a client
+    cout << "Ajout d'une nouvelle nationalitï¿½ au client 1 :\n";
+    gestion.ajouterNationalite(1, "Italienne");
+    gestion.afficherNationalites(1); // Client 1 now has French, Algerian, and Italian nationalities
+
+    // Remove a nationality from a client
+    cout << "Suppression d'une nationalitï¿½ du client 1 :\n";
+    gestion.supprimerNationalite(1, "Franï¿½aise");
+    gestion.afficherNationalites(1); // Client 1 now only has Algerian and Italian nationalities
+
+    // Display all clients' nationalities
+    cout << "Affichage de toutes les nationalitï¿½s des clients :\n";
+    gestion.afficherTous();
+
+    system("pause");
+    return 0;
 }

@@ -2,26 +2,28 @@
 #include <string>
 #include <vector>
 using namespace std;
-class GestionEquipe {
+class GestionEquipe
+{
     string nomEquipe;
     int nombreMembres;
-    vector<Employe*> membres;
+    vector<Employe *> membres;
+
 public:
     GestionEquipe(string nom = "", int nb = 1);
-    GestionEquipe(const GestionEquipe& equipe);
+    GestionEquipe(const GestionEquipe &equipe);
     ~GestionEquipe();
-	GestionEquipe& operator=(const GestionEquipe& equipe);
+    GestionEquipe &operator=(const GestionEquipe &equipe);
     string getNomEquipe();
     void setNomEquipe(string n);
     int getNombreMembres();
     void setNombreMembres(int n);
-    //crud
-    void ajouterEmploye(Employe* employe);
+    // crud
+    void ajouterEmploye(Employe *employe);
     void supprimerEmploye(int idEmploye);
     void afficherEquipe();
-    Employe* rechercherEmploye(int idEmploye);
-    bool modifierEmploye(int idEmploye, const string& nom, const string& poste, float salaire, int nbrTache);
-     // Sauvegarde et chargement des employés dans/depuis un fichier
-    void enregistrerEmployesDansFichier(const string& nomFichier);
-    void chargerEmployesDepuisFichier(const string& nomFichier);
+    Employe *rechercherEmploye(int idEmploye);
+    bool modifierEmploye(int idEmploye, const string &nom, const string &poste, float salaire, int nbrTache);
+    // Sauvegarde et chargement des employï¿½s dans/depuis un fichier
+    void enregistrerEmployesDansFichier(const string &nomFichier);
+    void chargerEmployesDepuisFichier(const string &nomFichier);
 };

@@ -4,13 +4,15 @@
 #include <iostream>
 #include <string>
 using namespace std;
-class Tache {
-	int id;
+class Tache
+{
+    int id;
     string description;
     string statut;
+
 public:
-    Tache(int=0,string = "", string = "");
-    Tache(const Tache&);
+    Tache(int = 0, string = "", string = "");
+    Tache(const Tache &);
     ~Tache();
 
     string getDescription();
@@ -20,7 +22,6 @@ public:
     int getId();
     void setId(int id);
     void marquerCommeTerminee();
-
 };
 
 #endif

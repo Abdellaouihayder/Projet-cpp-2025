@@ -1,17 +1,19 @@
 #ifndef SPECIALISATION_H
 #define SPECIALISATION_H
 #include <iostream>
-#include <string>  
+#include <string>
 
 using namespace std;
 
-class Specialisation {
+class Specialisation
+{
 protected:
     string nomSpecialisation;
     string description;
+
 public:
     Specialisation(string nom = "", string desc = "");
-    Specialisation(const Specialisation& spec);
+    Specialisation(const Specialisation &spec);
     virtual ~Specialisation();
 
     string getNomSpecialisation();
@@ -21,4 +23,3 @@ public:
 };
 
 #endif // SPECIALISATION_H
-

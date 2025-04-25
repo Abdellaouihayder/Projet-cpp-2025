@@ -5,13 +5,15 @@
 #include <string>
 using namespace std;
 
-class client {
+class client
+{
     string nom;
     string prenom;
     int cin;
+
 public:
     client(string = "", string = "", int = 0);
-    client(const client&);
+    client(const client &);
     ~client();
     void afficherinfo();
     string getNom();
@@ -22,5 +24,4 @@ public:
     void setCin(int c);
 };
 
-#endif 
-
+#endif

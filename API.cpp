@@ -13,6 +13,10 @@
 #include <fstream>
 #include <cstdlib>
 #include <stdexcept>
+#include "GestionNationalite.h"
+#include <set>
+#include <map>
+#include <algorithm> 
 
 using namespace std;
 
@@ -50,12 +54,12 @@ void Tache::setId(int i){id=i;}
 Employe::Employe(int id, string n, string p, float s,int nbr) : idEmploye(id), nom(n), poste(p), salaire(s),nbrTache(nbr){
 try {
         if (nbrTache < 0) {
-            throw invalid_argument("Le nombre de tâches ne peut pas être négatif.");
+            throw invalid_argument("Le nombre de tï¿½ches ne peut pas ï¿½tre nï¿½gatif.");
         }
         this->nbrTache = nbrTache;
     } catch (const invalid_argument& e) {
-        cerr << "Erreur lors de la création de l'employé : " << e.what() << endl;
-        this->nbrTache = 0;  // Valeur par défaut ou traitement spécifique
+        cerr << "Erreur lors de la crï¿½ation de l'employï¿½ : " << e.what() << endl;
+        this->nbrTache = 0;  // Valeur par dï¿½faut ou traitement spï¿½cifique
     }
 }
 Employe::Employe(const Employe& e)
@@ -103,7 +107,7 @@ Employe& Employe::operator=(const Employe& e) {
 	}
     return *this;  
 }
-// Sauvegarde les tâches dans un fichier
+// Sauvegarde les tï¿½ches dans un fichier
 void Employe::enregistrerTachesDansFichier(const string& nomFichier)  {
     ofstream fichier(nomFichier.c_str());  
     if (!fichier.is_open()) { exit(-1); }
@@ -116,7 +120,7 @@ void Employe::enregistrerTachesDansFichier(const string& nomFichier)  {
 
     fichier.close();
 }
-// Charge les tâches depuis un fichier
+// Charge les tï¿½ches depuis un fichier
 void Employe::chargerTachesDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier.c_str());
     if (!fichier.is_open()) { exit(-2); }
@@ -141,7 +145,7 @@ bool Employe::supprimerTacheParId(int id) {
             delete taches[i];                      
             taches.erase(taches.begin() + i);         
             nbrTache--;  
-			// Réécriture du fichier mis à jour
+			// Rï¿½ï¿½criture du fichier mis ï¿½ jour
             enregistrerTachesDansFichier("taches.txt");              
             return true;               
         }
@@ -196,15 +200,15 @@ Receptionniste::~Receptionniste() {}
 string Receptionniste::getShift() {return shift;}
 void Receptionniste::setShift(string s) {shift = s;}
 void Receptionniste::enregistrerClient(client c) {
-cout << "Client " << c.getNom() << " " << c.getPrenom() << " enregistré." << endl;}
+cout << "Client " << c.getNom() << " " << c.getPrenom() << " enregistrï¿½." << endl;}
 void Receptionniste::attribuerChambre(client c, int chambre) {
-cout << "Chambre " << chambre << " attribuée au client " << c.getNom() << " " << c.getPrenom() << endl;}
+cout << "Chambre " << chambre << " attribuï¿½e au client " << c.getNom() << " " << c.getPrenom() << endl;}
 void Receptionniste::afficherEmploye(){
 cout << "Nom: " << getNom() << ", Poste: " << getPoste() << ", Salaire: " << getSalaire() << ", Shift: " << shift << endl;}
 // Surcharge de <<
 
 ostream& operator<<(ostream& os, Receptionniste& r) {
-    os << "ID Employé: " << r.getIdEmploye() << endl;
+    os << "ID Employï¿½: " << r.getIdEmploye() << endl;
     os << "Nom: " << r.getNom() << endl;
     os << "Poste: " << r.getPoste() << endl;
     os << "Salaire: " << r.getSalaire() << " DT" << endl;
@@ -315,7 +319,7 @@ AssistantSpecialiste::AssistantSpecialiste(int id, string *nom, string poste, fl
 
 AssistantSpecialiste::AssistantSpecialiste(int id, string nom, string poste, float salaire, int nbrTache)
     : AssistantSocial(id, nom, poste, salaire, nbrTache), Specialisation() {
-    // initialisation spécifique si nécessaire
+    // initialisation spï¿½cifique si nï¿½cessaire
 }
 
 
@@ -357,7 +361,7 @@ void AssistantSpecialiste::afficherEmploye() {
 }
 
 AssistantSpecialiste AssistantSpecialiste::operator-(AssistantSpecialiste& other) {
-    // Réduire uniquement le salaire
+    // Rï¿½duire uniquement le salaire
     float newSalaire = this->salaire - other.salaire;
 
     return AssistantSpecialiste(
@@ -497,7 +501,7 @@ GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
 void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
     ofstream fichier(nomFichier.c_str());  
     if (!fichier.is_open()) {
-        cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employés !" << endl;
+        cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employï¿½s !" << endl;
         return;
     }
 
@@ -545,5 +549,93 @@ void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
 
     fichier.close();
 }
+
+//gestion des nationalites implementation
+
+void GestionDesNationalites::ajouterNationalite(const int &idClient, const string &nationalite)
+{
+    vector<string> &vec = ClientNationalite[idClient];
+    if (find(vec.begin(), vec.end(), nationalite) == vec.end())
+    {
+        vec.push_back(nationalite);
+    }
+}
+
+void GestionDesNationalites::ajouterNationalites(const int &idClient, const vector<string> &nationalites)
+{
+    vector<string> &vec = ClientNationalite[idClient];
+    for (unsigned int i = 0; i < nationalites.size(); ++i)
+    {
+        if (find(vec.begin(), vec.end(), nationalites[i]) == vec.end())
+        {
+            vec.push_back(nationalites[i]);
+        }
+    }
+}
+
+void GestionDesNationalites::supprimerNationalite(const int &idClient, const string &nationalite)
+{
+    typename map<int, vector<string> >::iterator it = ClientNationalite.find(idClient);
+    if (it != ClientNationalite.end())
+    {
+        vector<string> &vec = it->second;
+        typename vector<string>::iterator vit = find(vec.begin(), vec.end(), nationalite);
+        if (vit != vec.end())
+        {
+            vec.erase(vit);
+        }
+        if (vec.empty())
+        {
+            ClientNationalite.erase(it);
+        }
+    }
+}
+
+void GestionDesNationalites::modifierNationalites(const int &idClient, const vector<string> &nouvellesNationalites)
+{
+    if (!nouvellesNationalites.empty())
+    {
+        ClientNationalite[idClient] = nouvellesNationalites;
+    }
+    else
+    {
+        ClientNationalite.erase(idClient);
+    }
+}
+
+void GestionDesNationalites::afficherNationalites(const int &idClient)
+{
+    typename map<int, vector<string> >::iterator it = ClientNationalite.find(idClient);
+    if (it != ClientNationalite.end())
+    {
+        cout << "Client " << idClient << " a les nationalitï¿½s : ";
+        typename vector<string>::iterator vit;
+        for (vit = it->second.begin(); vit != it->second.end(); ++vit)
+        {
+            cout << *vit << " ";
+        }
+        cout << endl;
+    }
+    else
+    {
+        cout << "Aucune nationalitï¿½ trouvï¿½ pour le client " << idClient << endl;
+    }
+}
+
+void GestionDesNationalites::afficherTous()
+{
+    typename map<int, vector<string> >::iterator it;
+    for (it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
+    {
+        cout << "Client " << it->first << " : ";
+        typename vector<string>::iterator vit;
+        for (vit = it->second.begin(); vit != it->second.end(); ++vit)
+        {
+            cout << *vit << " ";
+        }
+        cout << endl;
+    }
+}
+
 
 
