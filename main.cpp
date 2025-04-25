@@ -130,44 +130,25 @@ int main()
 
  */
 	
-	    GestionDesNationalites gestion;
 
-    // Ajouter des nationalités (simples) pour le client 1
+    
+     GestionDesNationalites<int, string> gestion;
+
     gestion.ajouterNationalite(1, "Française");
-    gestion.ajouterNationalite(1, "Italienne");
-    gestion.ajouterNationalite(1, "Française"); // Doublon ignoré grâce au set
-
-    // Afficher les nationalités du client 1
+    gestion.ajouterNationalite(1, "Tunisienne");
     gestion.afficherNationalites(1);
-
-    // Ajouter plusieurs nationalités à un autre client (client 2)
-    set<string> natClient2;
-    natClient2.insert("Espagnole");
-    natClient2.insert("Allemande");
-    natClient2.insert("Japonaise");
-
-    // Convertir le set en vector pour passer à la méthode (car elle prend vector)
-    vector<string> vecNatClient2(natClient2.begin(), natClient2.end());
-    gestion.ajouterNationalites(2, vecNatClient2);
-
-    // Affichage global
-    cout << "\n--- Tous les clients ---" << endl;
+    // Utilisation de push_back pour C++98
+    vector<string> nouvellesNationalites;
+    nouvellesNationalites.push_back("Algérienne");
+    nouvellesNationalites.push_back("Marocaine");
+    gestion.modifierNationalites(1, nouvellesNationalites);
+    gestion.afficherNationalites(1);
     gestion.afficherTous();
-
-    // Modifier les nationalités du client 1
-    set<string> nouvellesNat;
-    nouvellesNat.insert("Tunisienne");
-    nouvellesNat.insert("Algérienne");
-
-    vector<string> vecNouvellesNat(nouvellesNat.begin(), nouvellesNat.end());
-    gestion.modifierNationalites(1, vecNouvellesNat);
-
-    // Supprimer une nationalité
-    gestion.supprimerNationalite(2, "Allemande");
-
-    // Affichage final
-    cout << "\n--- Après modifications ---" << endl;
+    gestion.supprimerNationalite(1, "Marocaine");
+    gestion.afficherNationalites(1);
     gestion.afficherTous();
+    
+    
 	system("pause");
     return 0;
 }

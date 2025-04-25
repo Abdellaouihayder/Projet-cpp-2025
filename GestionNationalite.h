@@ -5,21 +5,28 @@
 #include <map>
 #include <set>
 #include <string>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
+template <typename IDType, typename NationaliteType>
 class GestionDesNationalites
 {
 private:
-    map<int, set<string> > ClientNationalite;
+    map<IDType, set<NationaliteType> > ClientNationalite;
 
 public:
-    void ajouterNationalites(const int &idClient, const vector<string> &nationalites);
-    void ajouterNationalite(const int &idClient, const string &nationalite);
-    void supprimerNationalite(const int &idClient, const string &nationalite);
-    void modifierNationalites(const int &idClient, const vector<string> &nouvellesNationalites);
-    void afficherNationalites(const int &idClient);
+    // Ajouter une nationalité pour un client
+    void ajouterNationalite(const IDType &idClient, const NationaliteType &nationalite);
+    // Ajouter plusieurs nationalités pour un client
+    void ajouterNationalites(const IDType &idClient, const vector<NationaliteType> &nationalites);
+    // Supprimer une nationalité pour un client
+    void supprimerNationalite(const IDType &idClient, const NationaliteType &nationalite);
+    // Modifier toutes les nationalités pour un client
+    void modifierNationalites(const IDType &idClient, const vector<NationaliteType> &nouvellesNationalites);
+    // Afficher les nationalités d'un client
+    void afficherNationalites(const IDType &idClient);
+    // Afficher toutes les nationalités
     void afficherTous();
 };
 

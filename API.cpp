@@ -551,56 +551,50 @@ void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
 }
 
 //gestion des nationalites implementation
-void GestionDesNationalites::ajouterNationalite(const int &idClient, const string &nationalite)
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::ajouterNationalite(const IDType &idClient, const NationaliteType &nationalite)
 {
     ClientNationalite[idClient].insert(nationalite);
 }
 
-void GestionDesNationalites::ajouterNationalites(const int &idClient, const vector<string> &nationalites)
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::ajouterNationalites(const IDType &idClient, const vector<NationaliteType> &nationalites)
 {
-    set<string> &s = ClientNationalite[idClient];
-    for (vector<string>::const_iterator it = nationalites.begin(); it != nationalites.end(); ++it)
-{
-    s.insert(*it);
-}
+    for (typename vector<NationaliteType>::const_iterator it = nationalites.begin(); it != nationalites.end(); ++it)
+    {
+        ClientNationalite[idClient].insert(*it);
+    }
 }
 
-void GestionDesNationalites::supprimerNationalite(const int &idClient, const string &nationalite)
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::supprimerNationalite(const IDType &idClient, const NationaliteType &nationalite)
 {
-    map<int, set<string> >::iterator it = ClientNationalite.find(idClient);
+    typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
-        set<string> &s = it->second;
-        s.erase(nationalite);
-        if (s.empty())
+        it->second.erase(nationalite);
+        if (it->second.empty())
         {
             ClientNationalite.erase(it);
         }
     }
 }
 
-
-void GestionDesNationalites::modifierNationalites(const int &idClient, const vector<string> &nouvellesNationalites)
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::modifierNationalites(const IDType &idClient, const vector<NationaliteType> &nouvellesNationalites)
 {
-    if (!nouvellesNationalites.empty())
-    {
-        set<string> nouvellesSet(nouvellesNationalites.begin(), nouvellesNationalites.end());
-        ClientNationalite[idClient] = nouvellesSet;
-    }
-    else
-    {
-        ClientNationalite.erase(idClient);
-    }
+    set<NationaliteType> nouvellesSet(nouvellesNationalites.begin(), nouvellesNationalites.end());
+    ClientNationalite[idClient] = nouvellesSet;
 }
 
-void GestionDesNationalites::afficherNationalites(const int &idClient)
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::afficherNationalites(const IDType &idClient)
 {
-    map<int, set<string> >::iterator it = ClientNationalite.find(idClient);
+    typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
         cout << "Client " << idClient << " a les nationalités : ";
-        set<string>::const_iterator nat;
-        for (nat = it->second.begin(); nat != it->second.end(); ++nat)
+        for (typename set<NationaliteType>::const_iterator nat = it->second.begin(); nat != it->second.end(); ++nat)
         {
             cout << *nat << " ";
         }
@@ -612,15 +606,13 @@ void GestionDesNationalites::afficherNationalites(const int &idClient)
     }
 }
 
-
-void GestionDesNationalites::afficherTous()
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
 {
-    map<int, set<string> >::iterator it;
-    for (it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
+    for (typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
     {
         cout << "Client " << it->first << " : ";
-        set<string>::const_iterator nat;
-        for (nat = it->second.begin(); nat != it->second.end(); ++nat)
+        for (typename set<NationaliteType>::const_iterator nat = it->second.begin(); nat != it->second.end(); ++nat)
         {
             cout << *nat << " ";
         }
@@ -628,6 +620,7 @@ void GestionDesNationalites::afficherTous()
     }
 }
 
-
+// Lien entre la déclaration du template et la définition du template
+template class GestionDesNationalites<int, string>;
 
 
