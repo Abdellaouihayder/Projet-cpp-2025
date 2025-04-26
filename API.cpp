@@ -146,7 +146,7 @@ bool Employe::supprimerTacheParId(int id) {
             delete taches[i];                      
             taches.erase(taches.begin() + i);         
             nbrTache--;  
-			// Récriture du fichier mis a jour
+			// Rï¿½criture du fichier mis a jour
             enregistrerTachesDansFichier("taches.txt");              
             return true;               
         }
@@ -362,7 +362,7 @@ void AssistantSpecialiste::afficherEmploye() {
 }
 
 AssistantSpecialiste AssistantSpecialiste::operator-(AssistantSpecialiste& other) {
-    // Réduire uniquement le salaire
+    // Rï¿½duire uniquement le salaire
     float newSalaire = this->salaire - other.salaire;
 
     return AssistantSpecialiste(
@@ -594,7 +594,7 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherNationalites(const
     typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
-        cout << "Client " << idClient << " a les nationalités : ";
+        cout << "Client " << idClient << " a les nationalitï¿½s : ";
         for (typename set<NationaliteType>::const_iterator nat = it->second.begin(); nat != it->second.end(); ++nat)
         {
             cout << *nat << " ";
@@ -603,7 +603,7 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherNationalites(const
     }
     else
     {
-        cout << "Aucune nationalité trouvée pour le client " << idClient << endl;
+        cout << "Aucune nationalitï¿½ trouvï¿½e pour le client " << idClient << endl;
     }
 }
 
@@ -629,7 +629,7 @@ void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichi
 
     if (!fichier)
     {
-        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'écriture." << endl;
+        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'ï¿½criture." << endl;
         return;
     }
 
@@ -650,7 +650,7 @@ void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichi
 
 
 
-// Charger les tâches depuis un fichier
+// Charger les tï¿½ches depuis un fichier
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::chargerTachesDepuisFichier(const string &nomFichier)
 {
@@ -685,7 +685,8 @@ void GestionDesNationalites<IDType, NationaliteType>::chargerTachesDepuisFichier
         cout << "Impossible d'ouvrir le fichier pour la lecture." << endl;
     }
 }
-// Lien entre la déclaration du template et la définition du template
+
+// Lien entre la dï¿½claration du template et la dï¿½finition du template
 template class GestionDesNationalites<int, string>;
 
 

@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "AssistantSpecialiste.h"
-#include "Receptionniste.h"
-#include "client.h"
-#include "tache.h"
-#include "employe.h"
-#include "assistantsocial.h"
-#include "specialisation.h"
-#include "gestionEquipe.h"
-#include "Tache.h"
+//#include "AssistantSpecialiste.h"
+//#include "Receptionniste.h"
+//#include "client.h"
+//#include "tache.h"
+//#include "employe.h"
+//#include "assistantsocial.h"
+//#include "specialisation.h"
+//#include "gestionEquipe.h"
+//#include "Tache.h"
 #include <stdexcept>
-#include "GestionNationalite.h"
+//#include "GestionNationalite.h"
 #include <set>
 #include <map>
-//#include "API.cpp"
+#include "API.cpp"
 
 using namespace std;
 int main()
@@ -134,8 +134,8 @@ int main()
     
      GestionDesNationalites<int, string> gestion;
 
-    // Ajouter des nationalités pour plusieurs clients
-    gestion.ajouterNationalite(5, "Française");
+    // Ajouter des nationalitï¿½s pour plusieurs clients
+    gestion.ajouterNationalite(5, "Franï¿½aise");
     gestion.ajouterNationalite(5, "Tunisienne");
 
     gestion.ajouterNationalite(7, "Italienne");
@@ -143,33 +143,33 @@ int main()
 
     gestion.ajouterNationalite(10, "Japonaise");
     gestion.ajouterNationalite(10, "Chinoise");
-    gestion.ajouterNationalite(10, "Coréenne");
+    gestion.ajouterNationalite(10, "Corï¿½enne");
 
-    // Afficher les nationalités avant enregistrement
+    // Afficher les nationalitï¿½s avant enregistrement
     cout << "Avant enregistrement dans le fichier :\n";
     gestion.afficherTous();
 
     // Enregistrer dans le fichier
     gestion.enregistrerTachesDansFichier("nationalites.txt");
 
-    // Modifier les nationalités du client 5
+    // Modifier les nationalitï¿½s du client 5
     vector<string> nouvellesNationalites;
     nouvellesNationalites.push_back("Marocaine");
     nouvellesNationalites.push_back("Libanaise");
     gestion.modifierNationalites(5, nouvellesNationalites);
 
-    // Supprimer une nationalité pour client 10
+    // Supprimer une nationalitï¿½ pour client 10
     gestion.supprimerNationalite(10, "Chinoise");
 
-    // Afficher après modification
-    cout << "\nAprès modification (avant rechargement du fichier) :\n";
+    // Afficher aprï¿½s modification
+    cout << "\nAprï¿½s modification (avant rechargement du fichier) :\n";
     gestion.afficherTous();
 
-    // Charger les données originales depuis le fichier
+    // Charger les donnï¿½es originales depuis le fichier
     gestion.chargerTachesDepuisFichier("nationalites.txt");
 
     // Affichage final
-    cout << "\nAprès chargement depuis le fichier :\n";
+    cout << "\nAprï¿½s chargement depuis le fichier :\n";
     gestion.afficherTous();
     
     
