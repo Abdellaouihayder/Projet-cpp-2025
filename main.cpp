@@ -135,15 +135,15 @@ int main()
      GestionDesNationalites<int, string> gestion;
 
     // Ajouter des nationalit�s pour plusieurs clients
-    gestion.ajouterNationalite(5, "Fran�aise");
-    gestion.ajouterNationalite(5, "Tunisienne");
+    gestion.ajouterNationalite(17, "Fran�aise");
+    gestion.ajouterNationalite(17, "Tunisienne");
 
-    gestion.ajouterNationalite(7, "Italienne");
-    gestion.ajouterNationalite(7, "Portugaise");
+    gestion.ajouterNationalite(12, "Italienne");
+    gestion.ajouterNationalite(12, "Portugaise");
 
-    gestion.ajouterNationalite(10, "Japonaise");
-    gestion.ajouterNationalite(10, "Chinoise");
-    gestion.ajouterNationalite(10, "Cor�enne");
+    gestion.ajouterNationalite(29, "Japonaise");
+    gestion.ajouterNationalite(29, "Chinoise");
+    gestion.ajouterNationalite(29, "Cor�enne");
 
     // Afficher les nationalit�s avant enregistrement
     cout << "Avant enregistrement dans le fichier :\n";
@@ -152,14 +152,14 @@ int main()
     // Enregistrer dans le fichier
     gestion.enregistrerTachesDansFichier("nationalites.txt");
 
-    // Modifier les nationalit�s du client 5
+    // Modifier les nationalit�s du client 17
     vector<string> nouvellesNationalites;
     nouvellesNationalites.push_back("Marocaine");
     nouvellesNationalites.push_back("Libanaise");
-    gestion.modifierNationalites(5, nouvellesNationalites);
+    gestion.modifierNationalites(17, nouvellesNationalites);
 
-    // Supprimer une nationalit� pour client 10
-    gestion.supprimerNationalite(10, "Chinoise");
+    // Supprimer une nationalit� pour client 29
+    gestion.supprimerNationalite(29, "Chinoise");
 
     // Afficher apr�s modification
     cout << "\nApr�s modification (avant rechargement du fichier) :\n";

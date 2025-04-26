@@ -620,16 +620,14 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
         cout << endl;
     }
 }
-
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichier(const string &nomFichier)
 {
-    fstream fichier;
-    fichier.open(nomFichier.c_str(), ios::in | ios::out | ios::trunc);
+    ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  // Changed to ensure file is cleared and written properly
 
-    if (!fichier)
+    if (!fichier.is_open())
     {
-        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'�criture." << endl;
+        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'écriture." << endl;
         return;
     }
 
@@ -647,8 +645,6 @@ void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichi
 
     fichier.close();
 }
-
-
 
 // Charger les t�ches depuis un fichier
 template <typename IDType, typename NationaliteType>
