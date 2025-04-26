@@ -621,7 +621,7 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
     }
 }
 template <typename IDType, typename NationaliteType>
-void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichier(const string &nomFichier)
+void GestionDesNationalites<IDType, NationaliteType>::enregistrerNationaliteDansFichier(const string &nomFichier)
 {
     ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  // Changed to ensure file is cleared and written properly
 
@@ -648,7 +648,7 @@ void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichi
 
 // Charger les t�ches depuis un fichier
 template <typename IDType, typename NationaliteType>
-void GestionDesNationalites<IDType, NationaliteType>::chargerTachesDepuisFichier(const string &nomFichier)
+void GestionDesNationalites<IDType, NationaliteType>::chargerNationaliteDepuisFichier(const string &nomFichier)
 {
     ifstream fichier(nomFichier.c_str());
     if (!fichier.is_open()) { exit(-4); }

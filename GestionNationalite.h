@@ -16,20 +16,20 @@ private:
     map<IDType, set<NationaliteType> > ClientNationalite;
 
 public:
-    // Ajouter une nationalité pour un client
+    // Ajouter une nationalitï¿½ pour un client
     void ajouterNationalite(const IDType &idClient, const NationaliteType &nationalite);
-    // Ajouter plusieurs nationalités pour un client
+    // Ajouter plusieurs nationalitï¿½s pour un client
     void ajouterNationalites(const IDType &idClient, const vector<NationaliteType> &nationalites);
-    // Supprimer une nationalité pour un client
+    // Supprimer une nationalitï¿½ pour un client
     void supprimerNationalite(const IDType &idClient, const NationaliteType &nationalite);
-    // Modifier toutes les nationalités pour un client
+    // Modifier toutes les nationalitï¿½s pour un client
     void modifierNationalites(const IDType &idClient, const vector<NationaliteType> &nouvellesNationalites);
-    // Afficher les nationalités d'un client
+    // Afficher les nationalitï¿½s d'un client
     void afficherNationalites(const IDType &idClient);
-    // Afficher toutes les nationalités
+    // Afficher toutes les nationalitï¿½s
     void afficherTous();
-    void enregistrerTachesDansFichier(const string &nomFichier);
-    void chargerTachesDepuisFichier(const string &nomFichier);
+    void enregistrerNationaliteDansFichier(const string &nomFichier);
+    void chargerNationaliteDepuisFichier(const string &nomFichier);
 };
 
 #endif

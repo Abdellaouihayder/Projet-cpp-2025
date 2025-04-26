@@ -150,7 +150,7 @@ int main()
     gestion.afficherTous();
 
     // Enregistrer dans le fichier
-    gestion.enregistrerTachesDansFichier("nationalites.txt");
+    gestion.enregistrerNationaliteDansFichier("nationalites.txt");
 
     // Modifier les nationalit�s du client 17
     vector<string> nouvellesNationalites;
@@ -166,7 +166,7 @@ int main()
     gestion.afficherTous();
 
     // Charger les donn�es originales depuis le fichier
-    gestion.chargerTachesDepuisFichier("nationalites.txt");
+    gestion.chargerNationaliteDepuisFichier("nationalites.txt");
 
     // Affichage final
     cout << "\nApr�s chargement depuis le fichier :\n";
