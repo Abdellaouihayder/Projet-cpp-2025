@@ -134,18 +134,42 @@ int main()
     
      GestionDesNationalites<int, string> gestion;
 
-    gestion.ajouterNationalite(1, "Française");
-    gestion.ajouterNationalite(1, "Tunisienne");
-    gestion.afficherNationalites(1);
-    // Utilisation de push_back pour C++98
-    vector<string> nouvellesNationalites;
-    nouvellesNationalites.push_back("Algérienne");
-    nouvellesNationalites.push_back("Marocaine");
-    gestion.modifierNationalites(1, nouvellesNationalites);
-    gestion.afficherNationalites(1);
+    // Ajouter des nationalités pour plusieurs clients
+    gestion.ajouterNationalite(5, "Française");
+    gestion.ajouterNationalite(5, "Tunisienne");
+
+    gestion.ajouterNationalite(7, "Italienne");
+    gestion.ajouterNationalite(7, "Portugaise");
+
+    gestion.ajouterNationalite(10, "Japonaise");
+    gestion.ajouterNationalite(10, "Chinoise");
+    gestion.ajouterNationalite(10, "Coréenne");
+
+    // Afficher les nationalités avant enregistrement
+    cout << "Avant enregistrement dans le fichier :\n";
     gestion.afficherTous();
-    gestion.supprimerNationalite(1, "Marocaine");
-    gestion.afficherNationalites(1);
+
+    // Enregistrer dans le fichier
+    gestion.enregistrerTachesDansFichier("nationalites.txt");
+
+    // Modifier les nationalités du client 5
+    vector<string> nouvellesNationalites;
+    nouvellesNationalites.push_back("Marocaine");
+    nouvellesNationalites.push_back("Libanaise");
+    gestion.modifierNationalites(5, nouvellesNationalites);
+
+    // Supprimer une nationalité pour client 10
+    gestion.supprimerNationalite(10, "Chinoise");
+
+    // Afficher après modification
+    cout << "\nAprès modification (avant rechargement du fichier) :\n";
+    gestion.afficherTous();
+
+    // Charger les données originales depuis le fichier
+    gestion.chargerTachesDepuisFichier("nationalites.txt");
+
+    // Affichage final
+    cout << "\nAprès chargement depuis le fichier :\n";
     gestion.afficherTous();
     
     

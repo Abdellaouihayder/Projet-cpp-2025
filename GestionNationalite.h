@@ -28,6 +28,8 @@ public:
     void afficherNationalites(const IDType &idClient);
     // Afficher toutes les nationalités
     void afficherTous();
+    void enregistrerTachesDansFichier(const string &nomFichier);
+    void chargerTachesDepuisFichier(const string &nomFichier);
 };
 
 #endif

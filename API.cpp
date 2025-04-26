@@ -17,6 +17,7 @@
 #include <set>
 #include <map>
 #include <algorithm> 
+#include <sstream>  
 
 using namespace std;
 
@@ -107,7 +108,7 @@ Employe& Employe::operator=(const Employe& e) {
 	}
     return *this;  
 }
-// Sauvegarde les tï¿½ches dans un fichier
+// Sauvegarde les taches dans un fichier
 void Employe::enregistrerTachesDansFichier(const string& nomFichier)  {
     ofstream fichier(nomFichier.c_str());  
     if (!fichier.is_open()) { exit(-1); }
@@ -120,7 +121,7 @@ void Employe::enregistrerTachesDansFichier(const string& nomFichier)  {
 
     fichier.close();
 }
-// Charge les tï¿½ches depuis un fichier
+// Charge les taches depuis un fichier
 void Employe::chargerTachesDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier.c_str());
     if (!fichier.is_open()) { exit(-2); }
@@ -145,7 +146,7 @@ bool Employe::supprimerTacheParId(int id) {
             delete taches[i];                      
             taches.erase(taches.begin() + i);         
             nbrTache--;  
-			// Rï¿½ï¿½criture du fichier mis ï¿½ jour
+			// Récriture du fichier mis a jour
             enregistrerTachesDansFichier("taches.txt");              
             return true;               
         }
@@ -361,7 +362,7 @@ void AssistantSpecialiste::afficherEmploye() {
 }
 
 AssistantSpecialiste AssistantSpecialiste::operator-(AssistantSpecialiste& other) {
-    // Rï¿½duire uniquement le salaire
+    // Réduire uniquement le salaire
     float newSalaire = this->salaire - other.salaire;
 
     return AssistantSpecialiste(
@@ -620,6 +621,70 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
     }
 }
 
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::enregistrerTachesDansFichier(const string &nomFichier)
+{
+    fstream fichier;
+    fichier.open(nomFichier.c_str(), ios::in | ios::out | ios::trunc);
+
+    if (!fichier)
+    {
+        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'écriture." << endl;
+        return;
+    }
+
+    typename map<IDType, set<NationaliteType> >::iterator it;
+    for (it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
+    {
+        fichier << it->first << ":";
+        typename set<NationaliteType>::const_iterator natIt;
+        for (natIt = it->second.begin(); natIt != it->second.end(); ++natIt)
+        {
+            fichier << " " << *natIt;
+        }
+        fichier << endl;
+    }
+
+    fichier.close();
+}
+
+
+
+// Charger les tâches depuis un fichier
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::chargerTachesDepuisFichier(const string &nomFichier)
+{
+    ifstream fichier(nomFichier.c_str());
+    if (!fichier.is_open()) { exit(-4); }
+    if (fichier)
+    {
+        string ligne;
+        while (getline(fichier, ligne))
+        {
+            istringstream iss(ligne);
+            IDType idClient;
+            string deuxPoints;
+
+            // Lire l'ID et ignorer le ':'
+            if (!(iss >> idClient >> deuxPoints) || deuxPoints != ":")
+                continue;
+
+            set<NationaliteType> nationalites;
+            NationaliteType nat;
+            while (iss >> nat)
+            {
+                nationalites.insert(nat);
+            }
+
+            ClientNationalite[idClient] = nationalites;
+        }
+        fichier.close();
+    }
+    else
+    {
+        cout << "Impossible d'ouvrir le fichier pour la lecture." << endl;
+    }
+}
 // Lien entre la déclaration du template et la définition du template
 template class GestionDesNationalites<int, string>;
 
