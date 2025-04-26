@@ -500,7 +500,7 @@ GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
 }
 // enregistrerEmployesDansFichier
 void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
-    ofstream fichier(nomFichier.c_str());  
+    ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  
     if (!fichier.is_open()) {
         cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employ�s !" << endl;
         return;

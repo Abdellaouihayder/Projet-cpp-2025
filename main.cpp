@@ -19,37 +19,9 @@
 using namespace std;
 int main()
 {
-    /*	 string domaineExpertise1 = "Psychologie";
-        string domaineExpertise2 = "Sociologie";
-        string certif1 = "Certificat A";
-        string certif2 = "Certificat B";
-
-        AssistantSpecialiste as1(1, new string("Alice"), "Assistante Sociale", 2500.0f, new string(certif1), "Sp�cialisation A", "Description A", new string(domaineExpertise1));
-        AssistantSpecialiste as2(2, new string("Bob"), "Assistante Sociale", 2200.0f, new string(certif2), "Sp�cialisation B", "Description B", new string(domaineExpertise2));
-
-        // Affichage des informations avant soustraction
-        std::cout << "Avant soustraction : " << std::endl;
-        as1.afficherEmploye();
-        std::cout << std::endl;
-        as2.afficherEmploye();
-        std::cout << std::endl;
-
-        // Utilisation de l'op�rateur -
-        AssistantSpecialiste as3 = as1 - as2;
-
-        // Affichage des informations apr�s soustraction
-        std::cout << "Apr�s soustraction : " << std::endl;
-        as3.afficherEmploye();
-    */
-
-    /*
-    Receptionniste r;
-        cin >> r;
-        cout << "\nInformations du r�ceptionniste :\n";
-        cout << r;
-
-    cout << "test fichier" << endl;*/
-    /*
+    
+    cout << "test fichier" << endl;
+    
     GestionEquipe gestionEquipe;  // Cr�ation de l'objet de gestion d'�quipe
 
     // Test 1: Ajouter des employ�s
@@ -86,33 +58,6 @@ int main()
     // Afficher les employ�s apr�s chargement depuis fichier
     cout << "\nListe des employ�s apr�s chargement depuis fichier:\n";
     gestionEquipe.afficherEquipe();
-
-
-
-   Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, 5, "Matin");
-
-    // Cr�er des t�ches
-    Tache* tache1 = new Tache(1, "R�pondre au t�l�phone", "En cours");
-    Tache* tache2 = new Tache(2, "Accueillir un client", "Termin�");
-
-    // Ajouter des t�ches � l'employ�
-    r->ajouterTache(tache1);
-    r->ajouterTache(tache2);
-
-
-    // Sauvegarder les t�ches dans un fichier
-    r->enregistrerTachesDansFichier("Taches.txt");
-
-    // Charger les t�ches depuis le fichier
-    Receptionniste* r2 = new Receptionniste(0, "", "", 0.0, 0, "");
-    r2->chargerTachesDepuisFichier("Taches.txt");
-
-
-
-    // Lib�rer la m�moire
-    delete r;
-    delete r2;
-    */
 
     cout << "test exception" << endl;
     /*
