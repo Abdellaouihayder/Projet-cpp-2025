@@ -4,3 +4,6 @@
 12: Italienne Portugaise
 17: Fran�aise Tunisienne
 29: Chinoise Cor�enne Japonaise
+12: Italienne Portugaise
+17: Fran�aise Tunisienne
+29: Chinoise Cor�enne Japonaise

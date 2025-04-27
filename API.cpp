@@ -195,7 +195,7 @@ bool Employe::modifierTache(int id, const string& nouvelleDescription, const str
 
 
 //Receptionniste implementation
-Receptionniste::Receptionniste(int id, string n, string p, float s,int nbr, string sh) : Employe(id, n, p, s,nbr), shift(sh) {}
+Receptionniste::Receptionniste(int id, string n, string p, float s,int nbr, string sh) : Employe(id, n, "Receptionniste", s,nbr), shift(sh) {}
 Receptionniste::Receptionniste(const Receptionniste& r) : Employe(r), shift(r.shift) {}
 Receptionniste::~Receptionniste() {}
 string Receptionniste::getShift() {return shift;}
@@ -254,7 +254,7 @@ istream& operator>>(istream& is, Receptionniste& r) {
 
 //AssistantSocial implementation
 AssistantSocial::AssistantSocial(int id, string nom, string poste, float salaire,int nbr, string* domaineExpertise)
-    : Employe(id, nom, poste, salaire,nbr) {
+    : Employe(id, nom, "AssistantSocial", salaire,nbr) {
     this->domaineExpertise = new string(*domaineExpertise);  
 }
 AssistantSocial::AssistantSocial(const AssistantSocial& assistant)
@@ -313,7 +313,7 @@ void Specialisation::setDescription(string d) {description = d;}
 
 AssistantSpecialiste::AssistantSpecialiste(int id, string *nom, string poste, float salaire, int nbr, 
                                            string *certif, string nomSpec, string descSpec, string *domaineExpertise)
-: AssistantSocial(id, *nom, poste, salaire, nbr, domaineExpertise), 
+: AssistantSocial(id, *nom, "AssistantSpecialiste", salaire, nbr, domaineExpertise), 
   Specialisation(nomSpec, descSpec) {
     certification = new string(*certif);
 }

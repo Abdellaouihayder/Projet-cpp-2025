@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include "AssistantSpecialiste.h"
-//#include "Receptionniste.h"
-//#include "client.h"
-//#include "tache.h"
-//#include "employe.h"
-//#include "assistantsocial.h"
-//#include "specialisation.h"
-//#include "gestionEquipe.h"
-//#include "Tache.h"
+#include "AssistantSpecialiste.h"
+#include "Receptionniste.h"
+#include "client.h"
+#include "tache.h"
+#include "employe.h"
+#include "assistantsocial.h"
+#include "specialisation.h"
+#include "gestionEquipe.h"
+#include "Tache.h"
 #include <stdexcept>
-//#include "GestionNationalite.h"
+#include "GestionNationalite.h"
 #include <set>
 #include <map>
-#include "API.cpp"
+//#include "API.cpp"
 
 using namespace std;
 int main()
@@ -35,7 +35,7 @@ int main()
     gestionEquipe.ajouterEmploye(new AssistantSocial(2, "Doe Jane", "AssistantSocial", 2800.0, 3, &domaineExpertise));
 
     // Ajout d'un assistant spï¿½cialiste
-    string certification = "Diplï¿½me en Psychologie";
+    string certification = "Dipléme en Psychologie";
     Specialisation spec("Sociologie", "Etudes de la sociï¿½tï¿½");
     gestionEquipe.ajouterEmploye(new AssistantSpecialiste(3, new string("Charlie"), "AssistantSpecialiste", 3000.0, 4, &certification, spec.getNomSpecialisation(), spec.getDescription(), &domaineExpertise));
 
@@ -44,19 +44,19 @@ int main()
     gestionEquipe.afficherEquipe();
 
     // Afficher les employï¿½s aprï¿½s suppression
-    cout << "\nListe des employï¿½s aprï¿½s suppression:\n";
+    cout << "\nListe des employés aprés suppression:\n";
     gestionEquipe.afficherEquipe();
 
     // Test 5: Sauvegarder dans un fichier
-    cout << "\nSauvegarde de l'ï¿½quipe dans un fichier...\n";
+    cout << "\nSauvegarde de l'équipe dans un fichier...\n";
     gestionEquipe.enregistrerEmployesDansFichier("Employer.txt");
 
     // Test 6: Charger depuis un fichier
-    cout << "\nChargement des employï¿½s depuis le fichier...\n";
+    cout << "\nChargement des employés depuis le fichier...\n";
     gestionEquipe.chargerEmployesDepuisFichier("Employer.txt");
 
     // Afficher les employï¿½s aprï¿½s chargement depuis fichier
-    cout << "\nListe des employï¿½s aprï¿½s chargement depuis fichier:\n";
+    cout << "\nListe des employés aprés chargement depuis fichier:\n";
     gestionEquipe.afficherEquipe();
 
     cout << "test exception" << endl;
@@ -107,17 +107,17 @@ int main()
     gestion.supprimerNationalite(29, "Chinoise");
 
     // Afficher aprï¿½s modification
-    cout << "\nAprï¿½s modification (avant rechargement du fichier) :\n";
+    cout << "\nAprés modification (avant rechargement du fichier) :\n";
     gestion.afficherTous();
 
     // Charger les donnï¿½es originales depuis le fichier
     gestion.chargerNationaliteDepuisFichier("nationalites.txt");
 
     // Affichage final
-    cout << "\nAprï¿½s chargement depuis le fichier :\n";
+    cout << "\nAprés chargement depuis le fichier :\n";
     gestion.afficherTous();
     
     
-	system("pause");
+	//system("pause");
     return 0;
 }
