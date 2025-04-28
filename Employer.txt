@@ -1,9 +1,1 @@
 54;John Doe;Receptionniste;2500;5
-22;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSocial;3000;4
-145;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSocial;3000;4
-15;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSocial;3000;4

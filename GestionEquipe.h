@@ -9,7 +9,7 @@ class GestionEquipe
     vector<Employe *> membres;
 
 public:
-    GestionEquipe(string nom = "", int nb = 1);
+    GestionEquipe(string nom = "NONE", int nb = 1);
     GestionEquipe(const GestionEquipe &equipe);
     ~GestionEquipe();
     GestionEquipe &operator=(const GestionEquipe &equipe);

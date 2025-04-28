@@ -83,6 +83,7 @@ Employe* GestionEquipe::rechercherEmploye(int idEmploye) {
     return NULL;  
 }
 void GestionEquipe::afficherEquipe() {
+	if(nomEquipe==""){nomEquipe="vide";}
     cout << "Team Name: " << nomEquipe << endl;
     cout << "Number of Members: " << nombreMembres << endl;
     for (unsigned int i = 0; i < membres.size(); i++) {
