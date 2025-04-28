@@ -8,3 +8,4 @@ stl+class génerique (map and set)dans class gestion des nationalites
 varible statique et methode statique dans la class Tache
 +deux algorithme dans class GestionNationalité
 les type des cast dans la class GestionEquipe
+methode virtuelle dans class Employer
