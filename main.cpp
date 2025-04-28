@@ -4,7 +4,6 @@
 #include "AssistantSpecialiste.h"
 #include "Receptionniste.h"
 #include "client.h"
-#include "tache.h"
 #include "employe.h"
 #include "assistantsocial.h"
 #include "specialisation.h"
@@ -14,7 +13,6 @@
 #include "GestionNationalite.h"
 #include <set>
 #include <map>
-//#include "API.cpp"
 
 using namespace std;
 int main()
@@ -22,28 +20,28 @@ int main()
     
     cout << "test fichier" << endl;
     
-    GestionEquipe gestionEquipe;  // Crï¿½ation de l'objet de gestion d'ï¿½quipe
+    GestionEquipe gestionEquipe;  // Création de l'objet de gestion d'équipe
 
-    // Test 1: Ajouter des employï¿½s
-    cout << "Ajout de nouveaux employï¿½s:\n";
+    // Test 1: Ajouter des employés
+    cout << "Ajout de nouveaux employés:\n";
 
-    // Ajout d'un rï¿½ceptionniste
+    // Ajout d'un réceptionniste
     gestionEquipe.ajouterEmploye(new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, 5, "Matin"));
 
     // Ajout d'un assistant social
     string domaineExpertise = "Psychologie";
     gestionEquipe.ajouterEmploye(new AssistantSocial(2, "Doe Jane", "AssistantSocial", 2800.0, 3, &domaineExpertise));
 
-    // Ajout d'un assistant spï¿½cialiste
+    // Ajout d'un assistant spécialiste
     string certification = "Dipléme en Psychologie";
     Specialisation spec("Sociologie", "Etudes de la sociï¿½tï¿½");
     gestionEquipe.ajouterEmploye(new AssistantSpecialiste(3, new string("Charlie"), "AssistantSpecialiste", 3000.0, 4, &certification, spec.getNomSpecialisation(), spec.getDescription(), &domaineExpertise));
 
-    // Test 2: Afficher tous les employï¿½s
+    // Test 2: Afficher tous les employés
     cout << "\nListe des employï¿½s:\n";
     gestionEquipe.afficherEquipe();
 
-    // Afficher les employï¿½s aprï¿½s suppression
+    // Afficher les employés aprés suppression
     cout << "\nListe des employés aprés suppression:\n";
     gestionEquipe.afficherEquipe();
 
@@ -55,7 +53,7 @@ int main()
     cout << "\nChargement des employés depuis le fichier...\n";
     gestionEquipe.chargerEmployesDepuisFichier("Employer.txt");
 
-    // Afficher les employï¿½s aprï¿½s chargement depuis fichier
+    // Afficher les employés aprï¿½s chargement depuis fichier
     cout << "\nListe des employés aprés chargement depuis fichier:\n";
     gestionEquipe.afficherEquipe();
 
@@ -79,7 +77,7 @@ int main()
     
      GestionDesNationalites<int, string> gestion;
 
-    // Ajouter des nationalitï¿½s pour plusieurs clients
+    // Ajouter des nationalités pour plusieurs clients
     gestion.ajouterNationalite(17, "Franï¿½aise");
     gestion.ajouterNationalite(17, "Tunisienne");
 
@@ -90,27 +88,27 @@ int main()
     gestion.ajouterNationalite(29, "Chinoise");
     gestion.ajouterNationalite(29, "Corï¿½enne");
 
-    // Afficher les nationalitï¿½s avant enregistrement
+    // Afficher les nationalités avant enregistrement
     cout << "Avant enregistrement dans le fichier :\n";
     gestion.afficherTous();
 
     // Enregistrer dans le fichier
     gestion.enregistrerNationaliteDansFichier("nationalites.txt");
 
-    // Modifier les nationalitï¿½s du client 17
+    // Modifier les nationalités du client 17
     vector<string> nouvellesNationalites;
     nouvellesNationalites.push_back("Marocaine");
     nouvellesNationalites.push_back("Libanaise");
     gestion.modifierNationalites(17, nouvellesNationalites);
 
-    // Supprimer une nationalitï¿½ pour client 29
+    // Supprimer une nationalité pour client 29
     gestion.supprimerNationalite(29, "Chinoise");
 
-    // Afficher aprï¿½s modification
+    // Afficher aprés modification
     cout << "\nAprés modification (avant rechargement du fichier) :\n";
     gestion.afficherTous();
 
-    // Charger les donnï¿½es originales depuis le fichier
+    // Charger les données originales depuis le fichier
     gestion.chargerNationaliteDepuisFichier("nationalites.txt");
 
     // Affichage final

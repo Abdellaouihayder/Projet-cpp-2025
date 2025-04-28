@@ -1,54 +1,12 @@
 1;John Doe;Receptionniste;2500;5
 2;Doe Jane;AssistantSocial;2800;3
-4;Charlie;AssistantSpecialiste;3000;4
+3;Charlie;AssistantSocial;3000;4
 1;John Doe;Receptionniste;2500;5
 2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
+3;Charlie;AssistantSocial;3000;4
 1;John Doe;Receptionniste;2500;5
 2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
+3;Charlie;AssistantSocial;3000;4
 1;John Doe;Receptionniste;2500;5
 2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
-1;John Doe;Receptionniste;2500;5
-2;Doe Jane;AssistantSocial;2800;3
-3;Charlie;AssistantSpecialiste;3000;4
+3;Charlie;AssistantSocial;3000;4

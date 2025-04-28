@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o API.o
-LINKOBJ  = main.o API.o
+OBJ      = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o
+LINKOBJ  = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -27,5 +27,29 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
-API.o: API.cpp
-	$(CPP) -c API.cpp -o API.o $(CXXFLAGS)
+client.o: client.cpp
+	$(CPP) -c client.cpp -o client.o $(CXXFLAGS)
+
+Tache.o: Tache.cpp
+	$(CPP) -c Tache.cpp -o Tache.o $(CXXFLAGS)
+
+Employe.o: Employe.cpp
+	$(CPP) -c Employe.cpp -o Employe.o $(CXXFLAGS)
+
+Receptionniste.o: Receptionniste.cpp
+	$(CPP) -c Receptionniste.cpp -o Receptionniste.o $(CXXFLAGS)
+
+AssistantSocial.o: AssistantSocial.cpp
+	$(CPP) -c AssistantSocial.cpp -o AssistantSocial.o $(CXXFLAGS)
+
+Specialisation.o: Specialisation.cpp
+	$(CPP) -c Specialisation.cpp -o Specialisation.o $(CXXFLAGS)
+
+AssistantSpecialiste.o: AssistantSpecialiste.cpp
+	$(CPP) -c AssistantSpecialiste.cpp -o AssistantSpecialiste.o $(CXXFLAGS)
+
+GestionEquipe.o: GestionEquipe.cpp
+	$(CPP) -c GestionEquipe.cpp -o GestionEquipe.o $(CXXFLAGS)
+
+GestionNationalite.o: GestionNationalite.cpp
+	$(CPP) -c GestionNationalite.cpp -o GestionNationalite.o $(CXXFLAGS)

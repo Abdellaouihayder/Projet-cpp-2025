@@ -4,11 +4,13 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 class Tache
 {
     int id;
     string description;
     string statut;
+    static int compteur; // Déclaration de la variable statique
 
 public:
     Tache(int = 0, string = "", string = "");
@@ -22,6 +24,9 @@ public:
     int getId();
     void setId(int id);
     void marquerCommeTerminee();
+
+    static void afficherCompteur(); // Méthode statique
 };
 
 #endif
+
