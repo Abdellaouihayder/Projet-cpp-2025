@@ -157,35 +157,47 @@ void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
     fichier.close();  
 }
 void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
-    ifstream fichier(nomFichier.c_str());
-    if (!fichier.is_open()) { exit(-2); }
+
+  ifstream fichier(nomFichier.c_str());  // Ouverture du fichier
+    if (!fichier) {
+        cerr << "Erreur d'ouverture du fichier!" << endl;
+        return;
+    }
 
     string ligne;
-    while (getline(fichier, ligne)) {
-        int pos1 = ligne.find(';');
-        int pos2 = ligne.find(';', pos1 + 1);
-        int pos3 = ligne.find(';', pos2 + 1);
-        int pos4 = ligne.find(';', pos3 + 1);
+    while (getline(fichier, ligne)) {  
+        stringstream ss(ligne); 
+        int id, nbrTache;
+        string nom, poste;
+        float salaire;
 
-        int id = atoi(ligne.substr(0, pos1).c_str());
-        string nom = ligne.substr(pos1 + 1, pos2 - pos1 - 1);
-        string poste = ligne.substr(pos2 + 1, pos3 - pos2 - 1);
-        float salaire = atof(ligne.substr(pos3 + 1, pos4 - pos3 - 1).c_str());
-        int nbrTache = atoi(ligne.substr(pos4 + 1).c_str());
+        ss >> id;  
+        ss.ignore();  
+        
+        getline(ss, nom, ';');  
+        getline(ss, poste, ';');  
+        ss >> salaire;  
+        ss.ignore();  
+        
+        ss >> nbrTache;  
+        cout << "ID: " << id << ", Nom: " << nom
+             << ", Poste: " << poste << ", Salaire: " << salaire
+             << ", Nombre de Tâches: " << nbrTache << endl;
+		if (poste == "Receptionniste") {
+    		Receptionniste* e = new Receptionniste(id, nom, "Receptionniste", salaire, nbrTache, " ");
+    			membres.push_back(e);
+    			 delete e;
+		} else if (poste == "AssistantSocial") {
+    		AssistantSocial* e = new AssistantSocial(id, nom, "AssistantSocial", salaire, nbrTache, NULL);
+    		membres.push_back(e);
+    		 delete e;
+		} else if (poste == "AssistantSpecialiste") {
+    		AssistantSpecialiste* e = new AssistantSpecialiste(id, nom, "AssistantSpecialiste", salaire, nbrTache);
+    		membres.push_back(e);
+    		 delete e;
+		}
 
-        Employe* e = NULL;
-
-        if (poste == "Receptionniste") {
-            e = new Receptionniste(id, nom, "Receptionniste", salaire, nbrTache," ");
-        } else if (poste == "AssistantSocial") {
-            e = new AssistantSocial(id, nom, "AssistantSocial", salaire, nbrTache,NULL);
-        } else if (poste == "AssistantSpecialiste") {
-            e = new AssistantSpecialiste(id, nom, "AssistantSpecialiste", salaire, nbrTache);
-        }
-
-        if (e != NULL) {
-            membres.push_back(e);
-        }
+        
     }
 
     fichier.close();

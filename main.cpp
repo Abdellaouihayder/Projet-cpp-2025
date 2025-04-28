@@ -86,7 +86,7 @@ int main()
 
     gestion.ajouterNationalite(29, "Japonaise");
     gestion.ajouterNationalite(29, "Chinoise");
-    gestion.ajouterNationalite(29, "Corï¿½enne");
+    gestion.ajouterNationalite(29, "Correnne");
 
     // Afficher les nationalités avant enregistrement
     cout << "Avant enregistrement dans le fichier :\n";
