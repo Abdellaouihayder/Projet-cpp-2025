@@ -38,23 +38,23 @@ int main()
     gestionEquipe.ajouterEmploye(new AssistantSpecialiste(3, new string("Charlie"), "AssistantSpecialiste", 3000.0, 4, &certification, spec.getNomSpecialisation(), spec.getDescription(), &domaineExpertise));
 
     // Test 2: Afficher tous les employés
-    cout << "\nListe des employï¿½s:\n";
+    cout << "\nListe des employes:\n";
     gestionEquipe.afficherEquipe();
 
     // Afficher les employés aprés suppression
-    cout << "\nListe des employés aprés suppression:\n";
+    cout << "\nListe des employes apres suppression:\n";
     gestionEquipe.afficherEquipe();
 
     // Test 5: Sauvegarder dans un fichier
-    cout << "\nSauvegarde de l'équipe dans un fichier...\n";
+    cout << "\nSauvegarde de l'equipe dans un fichier...\n";
     gestionEquipe.enregistrerEmployesDansFichier("Employer.txt");
 
     // Test 6: Charger depuis un fichier
-    cout << "\nChargement des employés depuis le fichier...\n";
+    cout << "\nChargement des employes depuis le fichier...\n";
     gestionEquipe.chargerEmployesDepuisFichier("Employer.txt");
 
     // Afficher les employés aprï¿½s chargement depuis fichier
-    cout << "\nListe des employés aprés chargement depuis fichier:\n";
+    cout << "\nListe des employes aprés chargement depuis fichier:\n";
     gestionEquipe.afficherEquipe();
 
     cout << "test exception" << endl;

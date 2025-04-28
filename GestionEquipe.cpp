@@ -142,7 +142,7 @@ GestionEquipe& GestionEquipe::operator=(const GestionEquipe& equipe) {
 void GestionEquipe::enregistrerEmployesDansFichier(const string& nomFichier) {
     ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  
     if (!fichier.is_open()) {
-        cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employ�s !" << endl;
+        cerr << "Erreur lors de l'ouverture du fichier pour sauvegarder les employes !" << endl;
         return;
     }
 
@@ -186,19 +186,17 @@ void GestionEquipe::chargerEmployesDepuisFichier(const string& nomFichier) {
 		if (poste == "Receptionniste") {
     		Receptionniste* e = new Receptionniste(id, nom, "Receptionniste", salaire, nbrTache, " ");
     			membres.push_back(e);
-    			 delete e;
 		} else if (poste == "AssistantSocial") {
     		AssistantSocial* e = new AssistantSocial(id, nom, "AssistantSocial", salaire, nbrTache, NULL);
     		membres.push_back(e);
-    		 delete e;
 		} else if (poste == "AssistantSpecialiste") {
     		AssistantSpecialiste* e = new AssistantSpecialiste(id, nom, "AssistantSpecialiste", salaire, nbrTache);
     		membres.push_back(e);
-    		 delete e;
+		}else{
+			cout<<poste;
 		}
-
-        
     }
 
     fichier.close();
 }
+
