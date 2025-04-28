@@ -1,17 +1,16 @@
 #ifndef CLIENT_H
 #define CLIENT_H
-
 #include <iostream>
 #include <string>
 using namespace std;
 
 class client
 {
-    string nom;
     string prenom;
     int cin;
 
-public:
+public:    
+	string nom;
     client(string = "", string = "", int = 0);
     client(const client &);
     ~client();

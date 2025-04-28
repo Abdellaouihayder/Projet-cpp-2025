@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o
-LINKOBJ  = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o
+OBJ      = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o ServiceActivite.o ServiceMedical.o ServiceRepas.o Assistance.o Dossier.o Departement.o
+LINKOBJ  = main.o client.o Tache.o Employe.o Receptionniste.o AssistantSocial.o Specialisation.o AssistantSpecialiste.o GestionEquipe.o GestionNationalite.o ServiceActivite.o ServiceMedical.o ServiceRepas.o Assistance.o Dossier.o Departement.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -53,3 +53,21 @@ GestionEquipe.o: GestionEquipe.cpp
 
 GestionNationalite.o: GestionNationalite.cpp
 	$(CPP) -c GestionNationalite.cpp -o GestionNationalite.o $(CXXFLAGS)
+
+ServiceActivite.o: ServiceActivite.cpp
+	$(CPP) -c ServiceActivite.cpp -o ServiceActivite.o $(CXXFLAGS)
+
+ServiceMedical.o: ServiceMedical.cpp
+	$(CPP) -c ServiceMedical.cpp -o ServiceMedical.o $(CXXFLAGS)
+
+ServiceRepas.o: ServiceRepas.cpp
+	$(CPP) -c ServiceRepas.cpp -o ServiceRepas.o $(CXXFLAGS)
+
+Assistance.o: Assistance.cpp
+	$(CPP) -c Assistance.cpp -o Assistance.o $(CXXFLAGS)
+
+Dossier.o: Dossier.cpp
+	$(CPP) -c Dossier.cpp -o Dossier.o $(CXXFLAGS)
+
+Departement.o: Departement.cpp
+	$(CPP) -c Departement.cpp -o Departement.o $(CXXFLAGS)

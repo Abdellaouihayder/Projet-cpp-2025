@@ -13,109 +13,263 @@
 #include "GestionNationalite.h"
 #include <set>
 #include <map>
+#include"Service.h"
 
 using namespace std;
-int main()
-{
-    
-    cout << "test fichier" << endl;
-    
-    GestionEquipe gestionEquipe;  // Création de l'objet de gestion d'équipe
+void menuPrincipal() {
+    cout << "\n===== MENU PRINCIPAL =====\n";
+    cout << "1. Gerer Receptionniste\n";
+    cout << "2. Gerer Assistant Social\n";
+    cout << "3. Gerer Assistant Specialiste\n";
+    cout << "4. Gerer Equipe\n";
+    cout << "5. Gerer Nationalites\n";
+    cout << "6. Gerer Taches\n";
+    cout << "7. Gerer Clients\n";
+    cout << "0. Quitter\n";
+    cout << "Votre choix: ";
+}
 
-    // Test 1: Ajouter des employés
-    cout << "Ajout de nouveaux employés:\n";
+// Sous-menus
 
-    // Ajout d'un réceptionniste
-    gestionEquipe.ajouterEmploye(new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, 5, "Matin"));
+void menuReceptionniste() {
+    Receptionniste r;
+    int choix;
+    do {
+        cout << "\n-- Menu Receptionniste --\n";
+        cout << "1. Saisir receptionniste\n";
+        cout << "2. Afficher receptionniste\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1:
+                cin >> r;
+                break;
+            case 2:
+                cout << r;
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Ajout d'un assistant social
-    string domaineExpertise = "Psychologie";
-    gestionEquipe.ajouterEmploye(new AssistantSocial(2, "Doe Jane", "AssistantSocial", 2800.0, 3, &domaineExpertise));
+void menuAssistantSocial() {
+    AssistantSocial a;
+    int choix;
+    do {
+        cout << "\n-- Menu Assistant Social --\n";
+        cout << "1. Modifier domaine expertise\n";
+        cout << "2. Afficher assistant social\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                string domaine;
+                cout << "Entrer domaine expertise: ";
+                cin.ignore();
+                getline(cin, domaine);
+                a.setDomaineExpertise(domaine);
+                break;
+            }
+            case 2:
+                a.afficherEmploye();
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Ajout d'un assistant spécialiste
-    string certification = "Dipléme en Psychologie";
-    Specialisation spec("Sociologie", "Etudes de la sociï¿½tï¿½");
-    gestionEquipe.ajouterEmploye(new AssistantSpecialiste(3, new string("Charlie"), "AssistantSpecialiste", 3000.0, 4, &certification, spec.getNomSpecialisation(), spec.getDescription(), &domaineExpertise));
+void menuAssistantSpecialiste() {
+    AssistantSpecialiste a(1, "Nom", "Poste", 1200, 0);
+    int choix;
+    do {
+        cout << "\n-- Menu Assistant Specialiste --\n";
+        cout << "1. Modifier certification\n";
+        cout << "2. Afficher assistant specialiste\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                string certif;
+                cout << "Entrer certification: ";
+                cin.ignore();
+                getline(cin, certif);
+                a.setCertification(certif);
+                break;
+            }
+            case 2:
+                a.afficherEmploye();
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Test 2: Afficher tous les employés
-    cout << "\nListe des employes:\n";
-    gestionEquipe.afficherEquipe();
+void menuGestionEquipe() {
+    GestionEquipe equipe;
+    int choix;
+    do {
+        cout << "\n-- Menu Gestion Equipe --\n";
+        cout << "1. Ajouter receptionniste\n";
+        cout << "2. Afficher equipe\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                Receptionniste *r = new Receptionniste();
+                cin >> *r;
+                equipe.ajouterEmploye(r);
+                break;
+            }
+            case 2:
+                equipe.afficherEquipe();
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Afficher les employés aprés suppression
-    cout << "\nListe des employes apres suppression:\n";
-    gestionEquipe.afficherEquipe();
+void menuGestionNationalites() {
+    GestionDesNationalites<int, string> gestion;
+    int choix;
+    do {
+        cout << "\n-- Menu Gestion Nationalites --\n";
+        cout << "1. Ajouter nationalite\n";
+        cout << "2. Afficher nationalites d'un client\n";
+        cout << "3. Afficher tous\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                int id;
+                string nat;
+                cout << "ID client: ";
+                cin >> id;
+                cout << "Nationalite: ";
+                cin.ignore();
+                getline(cin, nat);
+                gestion.ajouterNationalite(id, nat);
+                break;
+            }
+            case 2: {
+                int id;
+                cout << "ID client: ";
+                cin >> id;
+                gestion.afficherNationalites(id);
+                break;
+            }
+            case 3:
+                gestion.afficherTous();
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Test 5: Sauvegarder dans un fichier
-    cout << "\nSauvegarde de l'equipe dans un fichier...\n";
-    gestionEquipe.enregistrerEmployesDansFichier("Employer.txt");
+void menuGestionTaches() {
+    vector<Tache> taches;
+    int choix;
+    do {
+        cout << "\n-- Menu Gestion Taches --\n";
+        cout << "1. Ajouter une tache\n";
+        cout << "2. Afficher toutes les taches\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                int id;
+                string desc, statut;
+                cout << "ID: ";
+                cin >> id;
+                cin.ignore();
+                cout << "Description: ";
+                getline(cin, desc);
+                cout << "Statut: ";
+                getline(cin, statut);
+                taches.push_back(Tache(id, desc, statut));
+                break;
+            }
+            case 2:
+               for (unsigned int i = 0; i < taches.size(); ++i) {
+    				cout << "ID: " << taches[i].getId()
+         				<< ", Desc: " << taches[i].getDescription()
+         				<< ", Statut: " << taches[i].getStatut() << endl;
+				}
 
-    // Test 6: Charger depuis un fichier
-    cout << "\nChargement des employes depuis le fichier...\n";
-    gestionEquipe.chargerEmployesDepuisFichier("Employer.txt");
+                break;
+        }
+    } while (choix != 0);
+}
 
-    // Afficher les employés aprï¿½s chargement depuis fichier
-    cout << "\nListe des employes aprés chargement depuis fichier:\n";
-    gestionEquipe.afficherEquipe();
+void menuGestionClients() {
+    vector<client> clients;
+    int choix;
+    do {
+        cout << "\n-- Menu Gestion Clients --\n";
+        cout << "1. Ajouter un client\n";
+        cout << "2. Afficher tous les clients\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+        switch (choix) {
+            case 1: {
+                string nom, prenom;
+                int cinClient;
+                cout << "Nom: ";
+                cin.ignore();
+                getline(cin, nom);
+                cout << "Prenom: ";
+                getline(cin, prenom);
+                cout << "CIN: ";
+                cin >> cinClient;
+                clients.push_back(client(nom, prenom, cinClient));
+                break;
+            }
+            case 2:
+              for (size_t i = 0; i < clients.size(); ++i) {
+    				clients[i].afficherinfo();
+					}
+                break;
+        }
+    } while (choix != 0);
+}
 
-    cout << "test exception" << endl;
-    /*
-    try {
-       // Tentative de crï¿½ation avec un nombre de tï¿½ches nï¿½gatif
-       Receptionniste* r = new Receptionniste(1, "John Doe", "Receptionniste", 2500.0, -2, "Matin");
+// Main
 
-       // Si aucune exception n'est lancï¿½e, afficher l'objet
-       r->afficherEmploye();
-       delete r;
-   }
-   catch (const invalid_argument& e) {
-       cout << "Exception attrapï¿½e : " << e.what() << endl;
-   }
+int main() {
+    int choix;
+    do {
+        menuPrincipal();
+        cin >> choix;
+        switch (choix) {
+            case 1:
+                menuReceptionniste();
+                break;
+            case 2:
+                menuAssistantSocial();
+                break;
+            case 3:
+                menuAssistantSpecialiste();
+                break;
+            case 4:
+                menuGestionEquipe();
+                break;
+            case 5:
+                menuGestionNationalites();
+                break;
+            case 6:
+                menuGestionTaches();
+                break;
+            case 7:
+                menuGestionClients();
+                break;
+            case 0:
+                cout << "Au revoir!\n";
+                break;
+            default:
+                cout << "Choix invalide.\n";
+        }
+    } while (choix != 0);
 
- */
-	
-
-    
-     GestionDesNationalites<int, string> gestion;
-
-    // Ajouter des nationalités pour plusieurs clients
-    gestion.ajouterNationalite(17, "Franï¿½aise");
-    gestion.ajouterNationalite(17, "Tunisienne");
-
-    gestion.ajouterNationalite(12, "Italienne");
-    gestion.ajouterNationalite(12, "Portugaise");
-
-    gestion.ajouterNationalite(29, "Japonaise");
-    gestion.ajouterNationalite(29, "Chinoise");
-    gestion.ajouterNationalite(29, "Correnne");
-
-    // Afficher les nationalités avant enregistrement
-    cout << "Avant enregistrement dans le fichier :\n";
-    gestion.afficherTous();
-
-    // Enregistrer dans le fichier
-    gestion.enregistrerNationaliteDansFichier("nationalites.txt");
-
-    // Modifier les nationalités du client 17
-    vector<string> nouvellesNationalites;
-    nouvellesNationalites.push_back("Marocaine");
-    nouvellesNationalites.push_back("Libanaise");
-    gestion.modifierNationalites(17, nouvellesNationalites);
-
-    // Supprimer une nationalité pour client 29
-    gestion.supprimerNationalite(29, "Chinoise");
-
-    // Afficher aprés modification
-    cout << "\nAprés modification (avant rechargement du fichier) :\n";
-    gestion.afficherTous();
-
-    // Charger les données originales depuis le fichier
-    gestion.chargerNationaliteDepuisFichier("nationalites.txt");
-
-    // Affichage final
-    cout << "\nAprés chargement depuis le fichier :\n";
-    gestion.afficherTous();
-    
-    
-	//system("pause");
     return 0;
 }
