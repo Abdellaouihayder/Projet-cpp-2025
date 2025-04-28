@@ -13,11 +13,23 @@
 #include "GestionNationalite.h"
 #include <set>
 #include <map>
-#include"Service.h"
+#include"Departement.h"
+#include"ServiceRepas.h"
+#include"ServiceMedical.h"
+#include"ServiceActivite.h"
+/*#include"Dossier.h"
+#include"Assistance.h"
+#include"Plat.h"
+
+*/
+
+
+
+
 
 using namespace std;
 void menuPrincipal() {
-    cout << "\n===== MENU PRINCIPAL =====\n";
+     cout << "\n===== MENU PRINCIPAL =====\n";
     cout << "1. Gerer Receptionniste\n";
     cout << "2. Gerer Assistant Social\n";
     cout << "3. Gerer Assistant Specialiste\n";
@@ -25,6 +37,7 @@ void menuPrincipal() {
     cout << "5. Gerer Nationalites\n";
     cout << "6. Gerer Taches\n";
     cout << "7. Gerer Clients\n";
+    cout << "8. Gerer Services et Departements\n"; 
     cout << "0. Quitter\n";
     cout << "Votre choix: ";
 }
@@ -234,6 +247,81 @@ void menuGestionClients() {
     } while (choix != 0);
 }
 
+//saad sous menu 
+void menuServiceDepartement() {
+    vector<Departement> departements;
+    ServiceRepas serviceRepas("Service de Repas");
+    ServiceMedical serviceMedical("Service Medical", 0);
+    ServiceActivite serviceActivite("Service Activite", 0);
+
+    int choix;
+    do {
+        cout << "\n-- Menu Services et Departements --\n";
+        cout << "1. Ajouter un Departement\n";
+        cout << "2. Afficher Departements\n";
+        cout << "3. Ajouter Plat au Service de Repas\n";
+        cout << "4. Afficher Menu du Service de Repas\n";
+        cout << "5. Afficher Infos Service Medical\n";
+        cout << "6. Ajouter Activite au Service Activite\n";
+        cout << "7. Afficher Infos Service Activite\n";
+        cout << "0. Retour\n";
+        cout << "Votre choix: ";
+        cin >> choix;
+
+        switch (choix) {
+            case 1: {
+                string nom;
+                int idResp;
+                cout << "Nom du departement: ";
+                cin.ignore();
+                getline(cin, nom);
+                cout << "ID du responsable: ";
+                cin >> idResp;
+                departements.push_back(Departement(nom, idResp));
+                break;
+            }
+            case 2:
+                for (size_t i = 0; i < departements.size(); ++i) {
+                    departements[i].afficherDetails();
+                }
+                break;
+            case 3: {
+                string nom, desc;
+                double prix;
+                cout << "Nom du plat: ";
+                cin.ignore();
+                getline(cin, nom);
+                cout << "Description du plat: ";
+                getline(cin, desc);
+                cout << "Prix: ";
+                cin >> prix;
+                Plat plat(nom, prix, desc);
+                serviceRepas.ajouterPlat(plat);
+                break;
+            }
+            case 4:
+                serviceRepas.afficherMenu();
+                break;
+            case 5:
+                serviceMedical.afficherServiceMedical();
+                break;
+            case 6: {
+                string activite;
+                cout << "Nom de l'activite: ";
+                cin.ignore();
+                getline(cin, activite);
+                serviceActivite.ajouterActivite(activite);
+                break;
+            }
+            case 7:
+                serviceActivite.afficherServiceActivite();
+                break;
+        }
+    } while (choix != 0);
+}
+
+
+
 // Main
 
 int main() {
@@ -263,6 +351,9 @@ int main() {
             case 7:
                 menuGestionClients();
                 break;
+            case 8:
+   				 menuServiceDepartement();
+    			break;
             case 0:
                 cout << "Au revoir!\n";
                 break;

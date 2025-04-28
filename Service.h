@@ -1,3 +1,6 @@
+#ifndef SERVICE_H
+#define SERVICE_H
+
 #include <iostream>
 #include <vector>
 #include <iostream>
@@ -11,3 +14,5 @@ public:
     Service(string desc){description=desc;}
     virtual ~Service() {}
 };
+#endif
+

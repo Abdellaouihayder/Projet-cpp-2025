@@ -14,3 +14,11 @@ ServiceActivite::ServiceActivite(string desc, int anim):Service(desc) {
 void ServiceActivite::organiserEvenement(string date) {
         cout << "Avancement organise le " << date << " par animateur numero : " << animateurID << endl;
 }
+void ServiceActivite::ajouterActivite(string activite) {
+    cout << "Activité " << activite << " ajoutée par l'animateur " << animateurID << endl;
+}
+void ServiceActivite::afficherServiceActivite() {
+    cout << "Animateur ID : " << animateurID <<" : "<< description << endl;
+}
+
+

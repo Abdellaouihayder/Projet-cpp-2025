@@ -14,4 +14,6 @@ private:
 public:
     ServiceActivite(string="", int=0);
     void organiserEvenement(string date);
+    void ajouterActivite(string activite);
+    void afficherServiceActivite();
 };
