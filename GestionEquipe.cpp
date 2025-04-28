@@ -30,7 +30,7 @@ GestionEquipe::GestionEquipe(const GestionEquipe& equipe) {
     Employe *p;
     for (unsigned int i = 0; i < equipe.membres.size(); i++) {
         if (typeid(*equipe.membres[i]) == typeid(AssistantSpecialiste)) {
-        	p=new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*equipe.membres[i]));
+        	p=new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*equipe.membres[i]));//static_cast
             membres.push_back(p);
         }
         else if (typeid(*equipe.membres[i]) == typeid(Receptionniste)) {
@@ -52,7 +52,7 @@ int GestionEquipe::getNombreMembres() {return nombreMembres;}
 void GestionEquipe::setNombreMembres(int n) {nombreMembres = n;}
 
 void GestionEquipe::ajouterEmploye(Employe* employe) {
-    Employe* nonConstEmploye = const_cast<Employe*>(employe);
+    Employe* nonConstEmploye = const_cast<Employe*>(employe);//const cast
 
     if (typeid(*nonConstEmploye) == typeid(AssistantSpecialiste)) {
         nonConstEmploye = new AssistantSpecialiste(static_cast<const AssistantSpecialiste&>(*employe));
@@ -87,7 +87,7 @@ void GestionEquipe::afficherEquipe() {
     cout << "Number of Members: " << nombreMembres << endl;
     for (unsigned int i = 0; i < membres.size(); i++) {
         cout << "Employee ID: " << membres[i]->getIdEmploye() << ", Name: " << membres[i]->getNom() << endl;
-        if (AssistantSpecialiste* assistant = dynamic_cast<AssistantSpecialiste*>(membres[i])) {
+        if (AssistantSpecialiste* assistant = dynamic_cast<AssistantSpecialiste*>(membres[i])) {//dynamique cast
             cout << "Certification: " << assistant->getCertification() << endl;  
         }
         else if (Receptionniste* receptionniste = dynamic_cast<Receptionniste*>(membres[i])) {

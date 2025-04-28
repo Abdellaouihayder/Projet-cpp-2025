@@ -61,6 +61,7 @@ void GestionDesNationalites<IDType, NationaliteType>::modifierNationalites(const
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::afficherNationalites(const IDType &idClient)
 {
+	//algorithme find 
     typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.find(idClient);
     if (it != ClientNationalite.end())
     {
@@ -78,9 +79,21 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherNationalites(const
 }
 
 template <typename IDType, typename NationaliteType>
+struct CompareByID
+{
+    bool operator()(const pair<IDType, set<NationaliteType> >& a, const pair<IDType, set<NationaliteType> >& b) const
+    {
+        return a.first < b.first;
+    }
+};
+
+template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
 {
-    for (typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it)
+    vector< pair<IDType, set<NationaliteType> > > elements(ClientNationalite.begin(), ClientNationalite.end());
+    //Algorithe de Trier
+    sort(elements.begin(), elements.end(),CompareByID<IDType, NationaliteType>());
+    for (typename vector< pair<IDType, set<NationaliteType> > >::iterator it = elements.begin(); it != elements.end(); ++it)
     {
         cout << "Client " << it->first << " : ";
         for (typename set<NationaliteType>::const_iterator nat = it->second.begin(); nat != it->second.end(); ++nat)
@@ -90,6 +103,8 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
         cout << endl;
     }
 }
+
+
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::enregistrerNationaliteDansFichier(const string &nomFichier)
 {

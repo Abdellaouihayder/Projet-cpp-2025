@@ -6,3 +6,5 @@ fichier dans class employer et gestion d'equipe
 exception dans Employer dans le constructeur dans nbrTaches
 stl+class génerique (map and set)dans class gestion des nationalites
 varible statique et methode statique dans la class Tache
++deux algorithme dans class GestionNationalité
+les type des cast dans la class GestionEquipe
