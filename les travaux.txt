@@ -9,3 +9,4 @@ varible statique et methode statique dans la class Tache
 +deux algorithme dans class GestionNationalité
 les type des cast dans la class GestionEquipe
 methode virtuelle dans class Employer
+list vectors dans class GestionDesNationalites(conteneurs séquentiels)

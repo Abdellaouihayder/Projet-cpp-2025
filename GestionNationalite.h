@@ -25,6 +25,7 @@ public:
     void modifierNationalites(const IDType &idClient, const vector<NationaliteType> &nouvellesNationalites);
     // Afficher les nationalitïés d'un client
     void afficherNationalites(const IDType &idClient);
+    void afficherIDs();
     // Afficher toutes les nationalités
     void afficherTous();
     void enregistrerNationaliteDansFichier(const string &nomFichier);

@@ -18,6 +18,7 @@
 #include <map>
 #include <algorithm> 
 #include <sstream>  
+#include <list>
 
 using namespace std;
 
@@ -108,11 +109,11 @@ void GestionDesNationalites<IDType, NationaliteType>::afficherTous()
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::enregistrerNationaliteDansFichier(const string &nomFichier)
 {
-    ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  // Changed to ensure file is cleared and written properly
+    ofstream fichier(nomFichier.c_str(), ios::out | ios::app);  
 
     if (!fichier.is_open())
     {
-        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'Ã©criture." << endl;
+        cerr << "Erreur : impossible d'ouvrir le fichier \"" << nomFichier << "\" pour l'écriture." << endl;
         return;
     }
 
@@ -131,7 +132,25 @@ void GestionDesNationalites<IDType, NationaliteType>::enregistrerNationaliteDans
     fichier.close();
 }
 
-// Charger les tï¿½ches depuis un fichier
+template <typename IDType, typename NationaliteType>
+void GestionDesNationalites<IDType, NationaliteType>::afficherIDs() {
+    // Créer une liste pour stocker les IDs
+    list<IDType> ids;
+
+    // Parcours de la map pour ajouter les IDs dans la liste
+    for (typename map<IDType, set<NationaliteType> >::iterator it = ClientNationalite.begin(); it != ClientNationalite.end(); ++it) {
+        ids.push_back(it->first);  // Ajouter l'ID à la liste
+    }
+
+    // Afficher les IDs stockés dans la liste
+    cout << "Liste des IDs des clients : " << endl;
+    for (typename list<IDType>::iterator it = ids.begin(); it != ids.end(); ++it) {
+        cout << *it << " ";  // Affiche l'ID
+    }
+    cout << endl;
+}
+
+// Charger les taches depuis un fichier
 template <typename IDType, typename NationaliteType>
 void GestionDesNationalites<IDType, NationaliteType>::chargerNationaliteDepuisFichier(const string &nomFichier)
 {
@@ -167,7 +186,7 @@ void GestionDesNationalites<IDType, NationaliteType>::chargerNationaliteDepuisFi
     }
 }
 
-// Lien entre la dï¿½claration du template et la dï¿½finition du template
+// Lien entre la déclaration du template et la définition du template
 template class GestionDesNationalites<int, string>;
 
 

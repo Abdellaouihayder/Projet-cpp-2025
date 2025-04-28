@@ -19,8 +19,7 @@ public:
     Employe(int id = 0, string nom = "", string poste = "", float salaire = 0.0, int nbrTache = 0);
     Employe(const Employe &e);
     virtual ~Employe();
-
-    int getIdEmploye();
+	int getIdEmploye();
     void setIdEmploye(int id);
     string getNom();
     void setNom(string n);
