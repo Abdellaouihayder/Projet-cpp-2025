@@ -278,9 +278,11 @@ void menuServiceDepartement() {
                 cout << "ID du responsable: ";
                 cin >> idResp;
                 departements.push_back(Departement(nom, idResp));
+                Departement(nom, idResp).sauvegarderDepartement("departement.txt");
                 break;
             }
             case 2:
+            	
                 for (size_t i = 0; i < departements.size(); ++i) {
                     departements[i].afficherDetails();
                 }

@@ -45,7 +45,7 @@ cout << "Aucun dossier trouve avec ID " << id << "." << endl;
 }
 
 void Departement::sauvegarderDepartement(const string& filename) {
-  ofstream fichier(filename.c_str(), ios::out | ios::app);
+  ofstream fichier(filename.c_str(), ios::app | ios::app);
   if (fichier.is_open()) {
       fichier << "Departement: " << nom << ", Responsable de numero: " << Idresponsable << "\n";
       fichier << "Nombre de dossiers: " << dossiers.size() << "\n";
